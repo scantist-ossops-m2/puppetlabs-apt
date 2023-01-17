@@ -78,7 +78,7 @@ describe 'apt::ppa' do
   [
     'ppa:foo!/bar',
     'ppa:foo/bar!',
-    'ppa:foo1.0/bar',
+    'ppa:foo1,0/bar',
     'ppa:foo/bar/foobar',
     '|| ls -la ||',
     '|| touch /tmp/foo.txt ||',
