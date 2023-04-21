@@ -14,13 +14,13 @@ describe 'apt::backports', type: :class do
             name: 'Debian',
             release: {
               major: '9',
-              full: '9.0',
+              full: '9.0'
             },
             distro: {
               codename: 'stretch',
-              id: 'Debian',
-            },
-          },
+              id: 'Debian'
+            }
+          }
         }
       end
 
@@ -40,13 +40,13 @@ describe 'apt::backports', type: :class do
             name: 'Ubuntu',
             release: {
               major: '18',
-              full: '18.04',
+              full: '18.04'
             },
             distro: {
               codename: 'bionac',
-              id: 'Ubuntu',
-            },
-          },
+              id: 'Ubuntu'
+            }
+          }
         }
       end
 
@@ -67,13 +67,13 @@ describe 'apt::backports', type: :class do
             name: 'Ubuntu',
             release: {
               major: '18',
-              full: '18.04',
+              full: '18.04'
             },
             distro: {
               codename: 'bionac',
-              id: 'Ubuntu',
-            },
-          },
+              id: 'Ubuntu'
+            }
+          }
         }
       end
       let(:params) do
@@ -82,7 +82,7 @@ describe 'apt::backports', type: :class do
           release: 'vivid',
           repos: 'main',
           key: 'A1BD8E9D78F7FE5C3E65D8AF8B48AD6246925553',
-          pin: '90',
+          pin: '90'
         }
       end
 
@@ -103,23 +103,23 @@ describe 'apt::backports', type: :class do
             name: 'Ubuntu',
             release: {
               major: '18',
-              full: '18.04',
+              full: '18.04'
             },
             distro: {
               codename: 'bionac',
-              id: 'Ubuntu',
-            },
-          },
+              id: 'Ubuntu'
+            }
+          }
         }
       end
       let(:params) do
         {
           key: {
-            'id' => 'A1BD8E9D78F7FE5C3E65D8AF8B48AD6246925553',
+            'id' => 'A1BD8E9D78F7FE5C3E65D8AF8B48AD6246925553'
           },
           pin: {
-            'priority' => '90',
-          },
+            'priority' => '90'
+          }
         }
       end
 
@@ -138,13 +138,13 @@ describe 'apt::backports', type: :class do
           name: 'LinuxMint',
           release: {
             major: '17',
-            full: '17',
+            full: '17'
           },
           distro: {
             codename: 'qiana',
-            id: 'LinuxMint',
-          },
-        },
+            id: 'LinuxMint'
+          }
+        }
       }
     end
 
@@ -154,7 +154,7 @@ describe 'apt::backports', type: :class do
           location: 'http://archive.ubuntu.com/ubuntu',
           release: 'trusty-backports',
           repos: 'main universe multiverse restricted',
-          key: '630239CC130E1A7FD81A27B140976EAF437D05B5',
+          key: '630239CC130E1A7FD81A27B140976EAF437D05B5'
         }
       end
 
@@ -172,7 +172,7 @@ describe 'apt::backports', type: :class do
         {
           release: 'trusty-backports',
           repos: 'main universe multiverse restricted',
-          key: '630239CC130E1A7FD81A27B140976EAF437D05B5',
+          key: '630239CC130E1A7FD81A27B140976EAF437D05B5'
         }
       end
 
@@ -186,7 +186,7 @@ describe 'apt::backports', type: :class do
         {
           location: 'http://archive.ubuntu.com/ubuntu',
           repos: 'main universe multiverse restricted',
-          key: '630239CC130E1A7FD81A27B140976EAF437D05B5',
+          key: '630239CC130E1A7FD81A27B140976EAF437D05B5'
         }
       end
 
@@ -200,7 +200,7 @@ describe 'apt::backports', type: :class do
         {
           location: 'http://archive.ubuntu.com/ubuntu',
           release: 'trusty-backports',
-          key: '630239CC130E1A7FD81A27B140976EAF437D05B5',
+          key: '630239CC130E1A7FD81A27B140976EAF437D05B5'
         }
       end
 
@@ -214,7 +214,7 @@ describe 'apt::backports', type: :class do
         {
           location: 'http://archive.ubuntu.com/ubuntu',
           release: 'trusty-backports',
-          repos: 'main universe multiverse restricted',
+          repos: 'main universe multiverse restricted'
         }
       end
 
@@ -232,20 +232,20 @@ describe 'apt::backports', type: :class do
           name: 'Ubuntu',
           release: {
             major: '18',
-            full: '18.04',
+            full: '18.04'
           },
           distro: {
             codename: 'bionac',
-            id: 'Ubuntu',
-          },
-        },
+            id: 'Ubuntu'
+          }
+        }
       }
     end
 
     context 'with invalid location' do
       let(:params) do
         {
-          location: true,
+          location: true
         }
       end
 
@@ -257,7 +257,7 @@ describe 'apt::backports', type: :class do
     context 'with invalid release' do
       let(:params) do
         {
-          release: true,
+          release: true
         }
       end
 
@@ -269,7 +269,7 @@ describe 'apt::backports', type: :class do
     context 'with invalid repos' do
       let(:params) do
         {
-          repos: true,
+          repos: true
         }
       end
 
@@ -281,7 +281,7 @@ describe 'apt::backports', type: :class do
     context 'with invalid key' do
       let(:params) do
         {
-          key: true,
+          key: true
         }
       end
 
@@ -293,7 +293,7 @@ describe 'apt::backports', type: :class do
     context 'with invalid pin' do
       let(:params) do
         {
-          pin: true,
+          pin: true
         }
       end
 

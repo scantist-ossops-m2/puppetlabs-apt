@@ -16,13 +16,13 @@ describe 'apt::source', type: :define do
         name: 'Debian',
         release: {
           major: '9',
-          full: '9.0',
+          full: '9.0'
         },
         distro: {
           codename: 'stretch',
-          id: 'Debian',
-        },
-      },
+          id: 'Debian'
+        }
+      }
     }
   end
 
@@ -30,7 +30,7 @@ describe 'apt::source', type: :define do
     let :params do
       {
         'include' => { 'deb' => false, 'src' => true },
-        'location' => 'http://debian.mirror.iweb.ca/debian/',
+        'location' => 'http://debian.mirror.iweb.ca/debian/'
       }
     end
 
@@ -50,7 +50,7 @@ describe 'apt::source', type: :define do
         'key' => GPG_KEY_ID,
         'pin' => '10',
         'architecture' => 'x86_64',
-        'allow_unsigned' => true,
+        'allow_unsigned' => true
       }
     end
 
@@ -76,7 +76,7 @@ describe 'apt::source', type: :define do
       {
         'include' => { 'src' => false },
         'location' => 'http://debian.mirror.iweb.ca/debian/',
-        'allow_insecure' => true,
+        'allow_insecure' => true
       }
     end
 
@@ -88,7 +88,7 @@ describe 'apt::source', type: :define do
       {
         'include' => { 'src' => false },
         'location' => 'http://debian.mirror.iweb.ca/debian/',
-        'allow_unsigned' => true,
+        'allow_unsigned' => true
       }
     end
 
@@ -99,7 +99,7 @@ describe 'apt::source', type: :define do
     let :params do
       {
         'location' => 'http://debian.mirror.iweb.ca/debian/',
-        'architecture' => 'x86_64',
+        'architecture' => 'x86_64'
       }
     end
 
@@ -111,7 +111,7 @@ describe 'apt::source', type: :define do
   context 'with ensure => absent' do
     let :params do
       {
-        'ensure' => 'absent',
+        'ensure' => 'absent'
       }
     end
 
@@ -129,12 +129,12 @@ describe 'apt::source', type: :define do
             name: 'Debian',
             release: {
               major: '8',
-              full: '8.0',
+              full: '8.0'
             },
             distro: {
-              id: 'Debian',
-            },
-          },
+              id: 'Debian'
+            }
+          }
         }
       end
 

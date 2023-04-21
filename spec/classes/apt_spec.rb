@@ -46,13 +46,13 @@ describe 'apt' do
         name: 'Debian',
         release: {
           major: '9',
-          full: '9.0',
+          full: '9.0'
         },
         distro: {
           codename: 'stretch',
-          id: 'Debian',
-        },
-      },
+          id: 'Debian'
+        }
+      }
     }
   end
 
@@ -240,7 +240,7 @@ describe 'apt' do
         update: { 'frequency' => 'always', 'timeout' => 1, 'tries' => 3 },
         purge: { 'sources.list' => false, 'sources.list.d' => false,
                  'preferences' => false, 'preferences.d' => false,
-                 'apt.conf.d' => false },
+                 'apt.conf.d' => false }
       }
     end
 
@@ -280,7 +280,7 @@ describe 'apt' do
         update: { 'frequency' => 'always', 'timeout' => 1, 'tries' => 3 },
         purge: { 'sources.list' => true, 'sources.list.d' => true,
                  'preferences' => true, 'preferences.d' => true,
-                 'apt.conf.d' => true },
+                 'apt.conf.d' => true }
       }
     end
 
@@ -319,7 +319,7 @@ describe 'apt' do
       {
         update: { 'frequency' => 'always', 'timeout' => 1, 'tries' => 3 },
         purge: { 'sources.list' => true },
-        sources_list_force: false,
+        sources_list_force: false
       }
     end
 
@@ -333,7 +333,7 @@ describe 'apt' do
       {
         update: { 'frequency' => 'always', 'timeout' => 1, 'tries' => 3 },
         purge: { 'sources.list' => true },
-        sources_list_force: true,
+        sources_list_force: true
       }
     end
 
@@ -350,13 +350,13 @@ describe 'apt' do
           name: 'Ubuntu',
           release: {
             major: '18',
-            full: '18.04',
+            full: '18.04'
           },
           distro: {
             codename: 'bionic',
-            id: 'Ubuntu',
-          },
-        },
+            id: 'Ubuntu'
+          }
+        }
       },
       'Debian 9.0' => {
         os: {
@@ -364,13 +364,13 @@ describe 'apt' do
           name: 'Debian',
           release: {
             major: '9',
-            full: '9.0',
+            full: '9.0'
           },
           distro: {
             codename: 'stretch',
-            id: 'Debian',
-          },
-        },
+            id: 'Debian'
+          }
+        }
       },
       'Debian 10.0' => {
         os: {
@@ -378,14 +378,14 @@ describe 'apt' do
           name: 'Debian',
           release: {
             major: '10',
-            full: '10.0',
+            full: '10.0'
           },
           distro: {
             codename: 'buster',
-            id: 'Debian',
-          },
-        },
-      },
+            id: 'Debian'
+          }
+        }
+      }
     }
 
     facts_hash.each do |os, facts|
@@ -399,14 +399,14 @@ describe 'apt' do
               {
                 machine: 'deb.example.net',
                 login: 'foologin',
-                password: 'secret',
+                password: 'secret'
               },
               {
                 machine: 'apt.example.com',
                 login: 'aptlogin',
-                password: 'supersecret',
+                password: 'supersecret'
               },
-            ],
+            ]
           }
         end
 
@@ -448,14 +448,14 @@ machine apt.example.com login aptlogin password supersecret
               {
                 machinn: 'deb.example.net',
                 username: 'foologin',
-                password: 'secret',
+                password: 'secret'
               },
               {
                 machine: 'apt.example.com',
                 login: 'aptlogin',
-                password: 'supersecret',
+                password: 'supersecret'
               },
-            ],
+            ]
           }
         end
 
@@ -472,13 +472,13 @@ machine apt.example.com login aptlogin password supersecret
           name: 'Ubuntu',
           release: {
             major: '18',
-            full: '18.04',
+            full: '18.04'
           },
           distro: {
             codename: 'bionic',
-            id: 'Ubuntu',
-          },
-        },
+            id: 'Ubuntu'
+          }
+        }
       }
     end
     let(:params) do
@@ -489,13 +489,13 @@ machine apt.example.com login aptlogin password supersecret
           'repos' => 'main contrib non-free',
           'key' => { 'id' => '150C8614919D8446E01E83AF9AA38DCD55BE302B', 'server' => 'subkeys.pgp.net' },
           'pin' => '-10',
-          'include' => { 'src' => true },
+          'include' => { 'src' => true }
         },
         'puppetlabs' => {
           'location' => 'http://apt.puppetlabs.com',
           'repos' => 'main',
-          'key' => { 'id' => '6F6B15509CF8E59E6E469F327F438280EF8D349F', 'server' => 'pgp.mit.edu' },
-        },
+          'key' => { 'id' => '6F6B15509CF8E59E6E469F327F438280EF8D349F', 'server' => 'pgp.mit.edu' }
+        }
       } }
     end
 
@@ -521,23 +521,23 @@ machine apt.example.com login aptlogin password supersecret
           name: 'Ubuntu',
           release: {
             major: '18',
-            full: '18.04',
+            full: '18.04'
           },
           distro: {
             codename: 'bionic',
-            id: 'Ubuntu',
-          },
-        },
+            id: 'Ubuntu'
+          }
+        }
       }
     end
     let(:params) do
       { confs: {
         'foo' => {
-          'content' => 'foo',
+          'content' => 'foo'
         },
         'bar' => {
-          'content' => 'bar',
-        },
+          'content' => 'bar'
+        }
       } }
     end
 
@@ -558,23 +558,23 @@ machine apt.example.com login aptlogin password supersecret
           name: 'Ubuntu',
           release: {
             major: '18',
-            full: '18.04',
+            full: '18.04'
           },
           distro: {
             codename: 'bionic',
-            id: 'Ubuntu',
-          },
-        },
+            id: 'Ubuntu'
+          }
+        }
       }
     end
     let(:params) do
       { keys: {
         '55BE302B' => {
-          'server' => 'subkeys.pgp.net',
+          'server' => 'subkeys.pgp.net'
         },
         'EF8D349F' => {
-          'server' => 'pgp.mit.edu',
-        },
+          'server' => 'pgp.mit.edu'
+        }
       } }
     end
 
@@ -595,19 +595,19 @@ machine apt.example.com login aptlogin password supersecret
           name: 'Ubuntu',
           release: {
             major: '18',
-            full: '18.04',
+            full: '18.04'
           },
           distro: {
             codename: 'bionic',
-            id: 'Ubuntu',
-          },
-        },
+            id: 'Ubuntu'
+          }
+        }
       }
     end
     let(:params) do
       { ppas: {
         'ppa:drizzle-developers/ppa' => {},
-        'ppa:nginx/stable' => {},
+        'ppa:nginx/stable' => {}
       } }
     end
 
@@ -623,19 +623,19 @@ machine apt.example.com login aptlogin password supersecret
           name: 'Ubuntu',
           release: {
             major: '18',
-            full: '18.04',
+            full: '18.04'
           },
           distro: {
             codename: 'bionic',
-            id: 'Ubuntu',
-          },
-        },
+            id: 'Ubuntu'
+          }
+        }
       }
     end
     let(:params) do
       { settings: {
         'conf-banana' => { 'content' => 'banana' },
-        'pref-banana' => { 'content' => 'banana' },
+        'pref-banana' => { 'content' => 'banana' }
       } }
     end
 
@@ -651,19 +651,19 @@ machine apt.example.com login aptlogin password supersecret
           name: 'Ubuntu',
           release: {
             major: '18',
-            full: '18.04',
+            full: '18.04'
           },
           distro: {
             codename: 'bionic',
-            id: 'Ubuntu',
-          },
-        },
+            id: 'Ubuntu'
+          }
+        }
       }
     end
     let(:params) do
       { pins: {
         'stable' => { 'priority' => 600, 'order' => 50 },
-        'testing' => { 'priority' => 700, 'order' => 100 },
+        'testing' => { 'priority' => 700, 'order' => 100 }
       } }
     end
 

@@ -23,12 +23,12 @@ describe 'apt::ppa' do
           name: 'Ubuntu',
           release: {
             major: '18',
-            full: '18.04',
+            full: '18.04'
           },
           distro: {
             codename: 'trusty',
-            id: 'Ubuntu',
-          },
+            id: 'Ubuntu'
+          }
         },
         puppet_vardir: '/opt/puppetlabs/puppet/cache'
       }
@@ -59,13 +59,13 @@ describe 'apt::ppa' do
             name: 'Ubuntu',
             release: {
               major: '18',
-              full: '18.04',
+              full: '18.04'
             },
             distro: {
               codename: 'trusty',
-              id: 'Ubuntu',
-            },
-          },
+              id: 'Ubuntu'
+            }
+          }
         }
       end
 
@@ -92,13 +92,13 @@ describe 'apt::ppa' do
             name: 'Ubuntu',
             release: {
               major: '18',
-              full: '18.04',
+              full: '18.04'
             },
             distro: {
               codename: 'trusty',
-              id: 'Ubuntu',
-            },
-          },
+              id: 'Ubuntu'
+            }
+          }
         }
       end
 
@@ -116,14 +116,14 @@ describe 'apt::ppa' do
           name: 'Ubuntu',
           release: {
             major: '15',
-            full: '15.10',
+            full: '15.10'
           },
           distro: {
             codename: 'wily',
-            id: 'Ubuntu',
-          },
+            id: 'Ubuntu'
+          }
         },
-        puppet_vardir: '/opt/puppetlabs/puppet/cache',
+        puppet_vardir: '/opt/puppetlabs/puppet/cache'
       }
     end
 
@@ -144,7 +144,7 @@ describe 'apt::ppa' do
     let :params do
       {
         package_name: 'software-properties-common',
-        package_manage: true,
+        package_manage: true
       }
     end
 
@@ -155,14 +155,14 @@ describe 'apt::ppa' do
           name: 'Ubuntu',
           release: {
             major: '18',
-            full: '18.04',
+            full: '18.04'
           },
           distro: {
             codename: 'trusty',
-            id: 'Ubuntu',
-          },
+            id: 'Ubuntu'
+          }
         },
-        puppet_vardir: '/opt/puppetlabs/puppet/cache',
+        puppet_vardir: '/opt/puppetlabs/puppet/cache'
       }
     end
 
@@ -189,20 +189,20 @@ describe 'apt::ppa' do
           name: 'Ubuntu',
           release: {
             major: '18',
-            full: '18.04',
+            full: '18.04'
           },
           distro: {
             codename: 'trusty',
-            id: 'Ubuntu',
-          },
+            id: 'Ubuntu'
+          }
         },
-        puppet_vardir: '/opt/puppetlabs/puppet/cache',
+        puppet_vardir: '/opt/puppetlabs/puppet/cache'
       }
     end
 
     let :params do
       {
-        package_manage: false,
+        package_manage: false
       }
     end
 
@@ -231,21 +231,21 @@ describe 'apt::ppa' do
           name: 'Ubuntu',
           release: {
             major: '18',
-            full: '18.04',
+            full: '18.04'
           },
           distro: {
             codename: 'trusty',
-            id: 'Ubuntu',
-          },
+            id: 'Ubuntu'
+          }
         },
-        puppet_vardir: '/opt/puppetlabs/puppet/cache',
+        puppet_vardir: '/opt/puppetlabs/puppet/cache'
       }
     end
 
     let :params do
       {
         package_manage: true,
-        require: 'Apt::Ppa[ppa:user/foo2]',
+        require: 'Apt::Ppa[ppa:user/foo2]'
       }
     end
 
@@ -275,20 +275,20 @@ describe 'apt::ppa' do
           name: 'Ubuntu',
           release: {
             major: '18',
-            full: '18.04',
+            full: '18.04'
           },
           distro: {
             codename: 'trusty',
-            id: 'Ubuntu',
-          },
+            id: 'Ubuntu'
+          }
         },
-        puppet_vardir: '/opt/puppetlabs/puppet/cache',
+        puppet_vardir: '/opt/puppetlabs/puppet/cache'
       }
     end
 
     let :params do
       {
-        'package_manage' => true,
+        'package_manage' => true
       }
     end
 
@@ -317,20 +317,20 @@ describe 'apt::ppa' do
           name: 'Ubuntu',
           release: {
             major: '18',
-            full: '18.04',
+            full: '18.04'
           },
           distro: {
             codename: 'trusty',
-            id: 'Ubuntu',
-          },
+            id: 'Ubuntu'
+          }
         },
-        puppet_vardir: '/opt/puppetlabs/puppet/cache',
+        puppet_vardir: '/opt/puppetlabs/puppet/cache'
       }
     end
 
     let :params do
       {
-        package_manage: true,
+        package_manage: true
       }
     end
 
@@ -359,20 +359,20 @@ describe 'apt::ppa' do
           name: 'Ubuntu',
           release: {
             major: '18',
-            full: '18.04',
+            full: '18.04'
           },
           distro: {
             codename: 'trusty',
-            id: 'Ubuntu',
-          },
+            id: 'Ubuntu'
+          }
         },
-        puppet_vardir: '/opt/puppetlabs/puppet/cache',
+        puppet_vardir: '/opt/puppetlabs/puppet/cache'
       }
     end
 
     let :params do
       {
-        package_manage: true,
+        package_manage: true
       }
     end
 
@@ -399,14 +399,14 @@ describe 'apt::ppa' do
           name: 'Ubuntu',
           release: {
             major: '18',
-            full: '18.04',
+            full: '18.04'
           },
           distro: {
             codename: 'trusty',
-            id: 'Ubuntu',
-          },
+            id: 'Ubuntu'
+          }
         },
-        puppet_vardir: '/opt/puppetlabs/puppet/cache',
+        puppet_vardir: '/opt/puppetlabs/puppet/cache'
       }
     end
 
@@ -414,7 +414,7 @@ describe 'apt::ppa' do
 
     let :params do
       {
-        ensure: 'absent',
+        ensure: 'absent'
       }
     end
 
@@ -437,13 +437,13 @@ describe 'apt::ppa' do
             name: 'Ubuntu',
             release: {
               major: '18',
-              full: '18.04',
+              full: '18.04'
             },
             distro: {
               codename: nil,
-              id: 'Ubuntu',
-            },
-          },
+              id: 'Ubuntu'
+            }
+          }
         }
       end
 
@@ -462,13 +462,13 @@ describe 'apt::ppa' do
             name: 'Debian',
             release: {
               major: '6',
-              full: '6.0.7',
+              full: '6.0.7'
             },
             distro: {
               codename: 'wheezy',
-              id: 'Debian',
-            },
-          },
+              id: 'Debian'
+            }
+          }
         }
       end
 

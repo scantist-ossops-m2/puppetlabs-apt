@@ -20,13 +20,13 @@ describe 'apt::source' do
         name: 'Debian',
         release: {
           major: '9',
-          full: '9.0',
+          full: '9.0'
         },
         distro: {
           codename: 'stretch',
-          id: 'Debian',
-        },
-      },
+          id: 'Debian'
+        }
+      }
     }
   end
 
@@ -54,7 +54,7 @@ describe 'apt::source' do
           location: 'hello.there',
           pin: { 'release' => 'wishwash',
                  'explanation' => 'wishwash',
-                 'priority' => 1001 },
+                 'priority' => 1001 }
         }
       end
 
@@ -82,7 +82,7 @@ describe 'apt::source' do
           key: GPG_KEY_ID,
           pin: '10',
           architecture: 'x86_64',
-          allow_unsigned: true,
+          allow_unsigned: true
         }
       end
 
@@ -116,11 +116,11 @@ describe 'apt::source' do
             'server' => 'pgp.mit.edu',
             'content' => 'GPG key content',
             'source' => 'http://apt.puppetlabs.com/pubkey.gpg',
-            'weak_ssl' => true,
+            'weak_ssl' => true
           },
           pin: '10',
           architecture: 'x86_64',
-          allow_unsigned: true,
+          allow_unsigned: true
         }
       end
 
@@ -150,7 +150,7 @@ describe 'apt::source' do
     let :params do
       {
         location: 'hello.there',
-        allow_insecure: true,
+        allow_insecure: true
       }
     end
 
@@ -163,7 +163,7 @@ describe 'apt::source' do
     let :params do
       {
         location: 'hello.there',
-        allow_unsigned: true,
+        allow_unsigned: true
       }
     end
 
@@ -176,7 +176,7 @@ describe 'apt::source' do
     let :params do
       {
         location: 'hello.there',
-        check_valid_until: false,
+        check_valid_until: false
       }
     end
 
@@ -189,7 +189,7 @@ describe 'apt::source' do
     let :params do
       {
         location: 'hello.there',
-        check_valid_until: true,
+        check_valid_until: true
       }
     end
 
@@ -202,7 +202,7 @@ describe 'apt::source' do
     let :params do
       {
         location: 'hello.there',
-        keyring: '/usr/share/keyrings/foo-archive-keyring.gpg',
+        keyring: '/usr/share/keyrings/foo-archive-keyring.gpg'
       }
     end
 
@@ -219,7 +219,7 @@ describe 'apt::source' do
         location: 'hello.there',
         architecture: 'amd64',
         allow_unsigned: true,
-        keyring: '/usr/share/keyrings/foo-archive-keyring.gpg',
+        keyring: '/usr/share/keyrings/foo-archive-keyring.gpg'
       }
     end
 
@@ -234,7 +234,7 @@ describe 'apt::source' do
     let :params do
       {
         location: 'HTTPS://foo.bar',
-        allow_unsigned: false,
+        allow_unsigned: false
       }
     end
 
@@ -251,21 +251,21 @@ describe 'apt::source' do
           name: 'Debian',
           release: {
             major: '9',
-            full: '9.0',
+            full: '9.0'
           },
           distro: {
             codename: 'stretch',
-            id: 'Debian',
-          },
+            id: 'Debian'
+          }
         },
-        puppetversion: Puppet.version,
+        puppetversion: Puppet.version
       }
     end
     let :params do
       {
         location: 'HTTPS://foo.bar',
         allow_unsigned: false,
-        release: 'customrelease',
+        release: 'customrelease'
       }
     end
 
@@ -282,19 +282,19 @@ describe 'apt::source' do
           name: 'Debian',
           release: {
             major: '10',
-            full: '10.0',
+            full: '10.0'
           },
           distro: {
             codename: 'buster',
-            id: 'Debian',
-          },
-        },
+            id: 'Debian'
+          }
+        }
       }
     end
     let :params do
       {
         location: 'https://foo.bar',
-        allow_unsigned: false,
+        allow_unsigned: false
       }
     end
 
@@ -311,20 +311,20 @@ describe 'apt::source' do
           name: 'Debian',
           release: {
             major: '7',
-            full: '7.0',
+            full: '7.0'
           },
           distro: {
             codename: 'wheezy',
-            id: 'Debian',
-          },
-        },
+            id: 'Debian'
+          }
+        }
       }
     end
     let :params do
       {
         location: 'hello.there',
         include: { 'deb' => false, 'src' => true },
-        architecture: 'x86_64',
+        architecture: 'x86_64'
       }
     end
 
@@ -340,7 +340,7 @@ describe 'apt::source' do
     let :params do
       {
         location: 'hello.there',
-        include: { 'deb' => false, 'src' => true },
+        include: { 'deb' => false, 'src' => true }
       }
     end
 
@@ -353,7 +353,7 @@ describe 'apt::source' do
     let :params do
       {
         location: 'hello.there',
-        include: { 'src' => true },
+        include: { 'src' => true }
       }
     end
 
@@ -366,7 +366,7 @@ describe 'apt::source' do
     let :params do
       {
         include: { 'deb' => false },
-        location: 'hello.there',
+        location: 'hello.there'
       }
     end
 
@@ -381,7 +381,7 @@ describe 'apt::source' do
     let :params do
       {
         include: { 'deb' => false, 'src' => true },
-        location: 'hello.there',
+        location: 'hello.there'
       }
     end
 
@@ -395,7 +395,7 @@ describe 'apt::source' do
   context 'with ensure => absent' do
     let :params do
       {
-        ensure: 'absent',
+        ensure: 'absent'
       }
     end
 
@@ -413,12 +413,12 @@ describe 'apt::source' do
             name: 'Debian',
             release: {
               major: '8',
-              full: '8.0',
+              full: '8.0'
             },
             distro: {
-              id: 'Debian',
-            },
-          },
+              id: 'Debian'
+            }
+          }
         }
       end
       let(:params) { { location: 'hello.there' } }
@@ -438,7 +438,7 @@ describe 'apt::source' do
       let :params do
         {
           location: 'hello.there',
-          pin: true,
+          pin: true
         }
       end
 
@@ -450,7 +450,7 @@ describe 'apt::source' do
     context 'with notify_update = undef (default)' do
       let :params do
         {
-          location: 'hello.there',
+          location: 'hello.there'
         }
       end
 
@@ -461,7 +461,7 @@ describe 'apt::source' do
       let :params do
         {
           location: 'hello.there',
-          notify_update: true,
+          notify_update: true
         }
       end
 
@@ -472,7 +472,7 @@ describe 'apt::source' do
       let :params do
         {
           location: 'hello.there',
-          notify_update: false,
+          notify_update: false
         }
       end
 

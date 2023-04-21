@@ -167,38 +167,8 @@ Style/MixinUsage:
   Exclude:
     - 'spec/spec_helper.rb'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: implicit, explicit
-Style/RescueStandardError:
-  Exclude:
-    - 'spec/spec_helper.rb'
-
 # Offense count: 2
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/SlicingWithRange:
   Exclude:
     - 'lib/puppet/provider/apt_key/apt_key.rb'
-
-# Offense count: 338
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInHashLiteral:
-  Exclude:
-    - 'lib/puppet/provider/apt_key/apt_key.rb'
-    - 'spec/classes/apt_backports_spec.rb'
-    - 'spec/classes/apt_spec.rb'
-    - 'spec/classes/apt_update_spec.rb'
-    - 'spec/defines/conf_spec.rb'
-    - 'spec/defines/key_compat_spec.rb'
-    - 'spec/defines/key_spec.rb'
-    - 'spec/defines/mark_spec.rb'
-    - 'spec/defines/pin_spec.rb'
-    - 'spec/defines/ppa_spec.rb'
-    - 'spec/defines/setting_spec.rb'
-    - 'spec/defines/source_compat_spec.rb'
-    - 'spec/defines/source_spec.rb'
-    - 'spec/spec_helper.rb'
-    - 'spec/unit/puppet/provider/apt_key_spec.rb'
