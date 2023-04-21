@@ -41,10 +41,10 @@ describe 'apt::conf', type: :define do
     end
 
     it {
-      is_expected.to contain_file(filename).with('ensure' => 'present',
-                                                 'content' => %r{Apt::Install-Recommends 0;\nApt::AutoRemove::InstallRecommends 1;},
-                                                 'owner' => 'root',
-                                                 'group' => 'root')
+      expect(subject).to contain_file(filename).with('ensure' => 'present',
+                                                     'content' => %r{Apt::Install-Recommends 0;\nApt::AutoRemove::InstallRecommends 1;},
+                                                     'owner' => 'root',
+                                                     'group' => 'root')
     }
 
     context 'with notify_update = true (default)' do
@@ -72,7 +72,7 @@ describe 'apt::conf', type: :define do
     end
 
     it 'fails' do
-      is_expected.to raise_error(%r{pass in content})
+      expect(subject).to raise_error(%r{pass in content})
     end
   end
 
@@ -89,9 +89,9 @@ describe 'apt::conf', type: :define do
     end
 
     it {
-      is_expected.to contain_file(filename).with('ensure' => 'absent',
-                                                 'owner' => 'root',
-                                                 'group' => 'root')
+      expect(subject).to contain_file(filename).with('ensure' => 'absent',
+                                                     'owner' => 'root',
+                                                     'group' => 'root')
     }
   end
 end

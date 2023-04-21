@@ -32,7 +32,7 @@ describe 'apt::mark', type: :define do
     end
 
     it {
-      is_expected.to contain_exec('apt-mark manual mysource')
+      expect(subject).to contain_exec('apt-mark manual mysource')
     }
   end
 
@@ -44,7 +44,7 @@ describe 'apt::mark', type: :define do
     end
 
     it do
-      is_expected.to raise_error(Puppet::PreformattedError, %r{expects a match for Enum\['auto', 'hold', 'manual', 'unhold'\], got 'foobar'})
+      expect(subject).to raise_error(Puppet::PreformattedError, %r{expects a match for Enum\['auto', 'hold', 'manual', 'unhold'\], got 'foobar'})
     end
   end
 
@@ -70,7 +70,7 @@ describe 'apt::mark', type: :define do
       end
 
       it do
-        is_expected.to contain_exec("apt-mark manual #{title}")
+        expect(subject).to contain_exec("apt-mark manual #{title}")
       end
     end
   end
@@ -99,7 +99,7 @@ describe 'apt::mark', type: :define do
       end
 
       it do
-        is_expected.to raise_error(Puppet::PreformattedError, %r{Invalid package name: #{title}})
+        expect(subject).to raise_error(Puppet::PreformattedError, %r{Invalid package name: #{title}})
       end
     end
   end

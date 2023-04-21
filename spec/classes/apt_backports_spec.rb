@@ -25,10 +25,10 @@ describe 'apt::backports', type: :class do
       end
 
       it {
-        is_expected.to contain_apt__source('backports').with(location: 'http://deb.debian.org/debian',
-                                                             repos: 'main contrib non-free',
-                                                             release: 'stretch-backports',
-                                                             pin: { 'priority' => 200, 'release' => 'stretch-backports' })
+        expect(subject).to contain_apt__source('backports').with(location: 'http://deb.debian.org/debian',
+                                                                 repos: 'main contrib non-free',
+                                                                 release: 'stretch-backports',
+                                                                 pin: { 'priority' => 200, 'release' => 'stretch-backports' })
       }
     end
 
@@ -51,11 +51,11 @@ describe 'apt::backports', type: :class do
       end
 
       it {
-        is_expected.to contain_apt__source('backports').with(location: 'http://archive.ubuntu.com/ubuntu',
-                                                             key: '630239CC130E1A7FD81A27B140976EAF437D05B5',
-                                                             repos: 'main universe multiverse restricted',
-                                                             release: 'bionac-backports',
-                                                             pin: { 'priority' => 200, 'release' => 'bionac-backports' })
+        expect(subject).to contain_apt__source('backports').with(location: 'http://archive.ubuntu.com/ubuntu',
+                                                                 key: '630239CC130E1A7FD81A27B140976EAF437D05B5',
+                                                                 repos: 'main universe multiverse restricted',
+                                                                 release: 'bionac-backports',
+                                                                 pin: { 'priority' => 200, 'release' => 'bionac-backports' })
       }
     end
 
@@ -87,11 +87,11 @@ describe 'apt::backports', type: :class do
       end
 
       it {
-        is_expected.to contain_apt__source('backports').with(location: 'http://archive.ubuntu.com/ubuntu-test',
-                                                             key: 'A1BD8E9D78F7FE5C3E65D8AF8B48AD6246925553',
-                                                             repos: 'main',
-                                                             release: 'vivid',
-                                                             pin: { 'priority' => 90, 'release' => 'vivid' })
+        expect(subject).to contain_apt__source('backports').with(location: 'http://archive.ubuntu.com/ubuntu-test',
+                                                                 key: 'A1BD8E9D78F7FE5C3E65D8AF8B48AD6246925553',
+                                                                 repos: 'main',
+                                                                 release: 'vivid',
+                                                                 pin: { 'priority' => 90, 'release' => 'vivid' })
       }
     end
 
@@ -124,8 +124,8 @@ describe 'apt::backports', type: :class do
       end
 
       it {
-        is_expected.to contain_apt__source('backports').with(key: { 'id' => 'A1BD8E9D78F7FE5C3E65D8AF8B48AD6246925553' },
-                                                             pin: { 'priority' => '90' })
+        expect(subject).to contain_apt__source('backports').with(key: { 'id' => 'A1BD8E9D78F7FE5C3E65D8AF8B48AD6246925553' },
+                                                                 pin: { 'priority' => '90' })
       }
     end
   end
@@ -159,11 +159,11 @@ describe 'apt::backports', type: :class do
       end
 
       it {
-        is_expected.to contain_apt__source('backports').with(location: 'http://archive.ubuntu.com/ubuntu',
-                                                             key: '630239CC130E1A7FD81A27B140976EAF437D05B5',
-                                                             repos: 'main universe multiverse restricted',
-                                                             release: 'trusty-backports',
-                                                             pin: { 'priority' => 200, 'release' => 'trusty-backports' })
+        expect(subject).to contain_apt__source('backports').with(location: 'http://archive.ubuntu.com/ubuntu',
+                                                                 key: '630239CC130E1A7FD81A27B140976EAF437D05B5',
+                                                                 repos: 'main universe multiverse restricted',
+                                                                 release: 'trusty-backports',
+                                                                 pin: { 'priority' => 200, 'release' => 'trusty-backports' })
       }
     end
 
@@ -177,7 +177,7 @@ describe 'apt::backports', type: :class do
       end
 
       it do
-        is_expected.to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, repos, and key})
+        expect(subject).to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, repos, and key})
       end
     end
 
@@ -191,7 +191,7 @@ describe 'apt::backports', type: :class do
       end
 
       it do
-        is_expected.to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, repos, and key})
+        expect(subject).to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, repos, and key})
       end
     end
 
@@ -205,7 +205,7 @@ describe 'apt::backports', type: :class do
       end
 
       it do
-        is_expected.to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, repos, and key})
+        expect(subject).to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, repos, and key})
       end
     end
 
@@ -219,7 +219,7 @@ describe 'apt::backports', type: :class do
       end
 
       it do
-        is_expected.to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, repos, and key})
+        expect(subject).to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, repos, and key})
       end
     end
   end
@@ -250,7 +250,7 @@ describe 'apt::backports', type: :class do
       end
 
       it do
-        is_expected.to raise_error(Puppet::Error, %r{expects a})
+        expect(subject).to raise_error(Puppet::Error, %r{expects a})
       end
     end
 
@@ -262,7 +262,7 @@ describe 'apt::backports', type: :class do
       end
 
       it do
-        is_expected.to raise_error(Puppet::Error, %r{expects a})
+        expect(subject).to raise_error(Puppet::Error, %r{expects a})
       end
     end
 
@@ -274,7 +274,7 @@ describe 'apt::backports', type: :class do
       end
 
       it do
-        is_expected.to raise_error(Puppet::Error, %r{expects a})
+        expect(subject).to raise_error(Puppet::Error, %r{expects a})
       end
     end
 
@@ -286,7 +286,7 @@ describe 'apt::backports', type: :class do
       end
 
       it do
-        is_expected.to raise_error(Puppet::Error, %r{expects a})
+        expect(subject).to raise_error(Puppet::Error, %r{expects a})
       end
     end
 
@@ -298,7 +298,7 @@ describe 'apt::backports', type: :class do
       end
 
       it do
-        is_expected.to raise_error(Puppet::Error, %r{expects a})
+        expect(subject).to raise_error(Puppet::Error, %r{expects a})
       end
     end
   end

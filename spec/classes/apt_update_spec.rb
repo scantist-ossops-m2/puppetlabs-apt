@@ -33,7 +33,7 @@ describe 'apt::update', type: :class do
 
         it 'triggers an apt-get update run' do
           # set the apt_update exec's refreshonly attribute to false
-          is_expected.to contain_exec('apt_update').with('refreshonly' => false)
+          expect(subject).to contain_exec('apt_update').with('refreshonly' => false)
         end
       end
     end
@@ -58,7 +58,7 @@ describe 'apt::update', type: :class do
 
       it 'triggers an apt-get update run' do
         # set the apt_update exec\'s refreshonly attribute to false
-        is_expected.to contain_exec('apt_update').with('refreshonly' => false)
+        expect(subject).to contain_exec('apt_update').with('refreshonly' => false)
       end
     end
 
@@ -89,7 +89,7 @@ describe 'apt::update', type: :class do
 
       it 'skips an apt-get update run' do
         # set the apt_update exec's refreshonly attribute to false
-        is_expected.to contain_exec('apt_update').with('refreshonly' => true)
+        expect(subject).to contain_exec('apt_update').with('refreshonly' => true)
       end
     end
   end
@@ -122,7 +122,7 @@ describe 'apt::update', type: :class do
 
         it 'does not trigger an apt-get update run' do
           # don't change the apt_update exec's refreshonly attribute. (it should be true)
-          is_expected.to contain_exec('apt_update').with('refreshonly' => true)
+          expect(subject).to contain_exec('apt_update').with('refreshonly' => true)
         end
       end
     end
@@ -147,7 +147,7 @@ describe 'apt::update', type: :class do
 
       it 'does not trigger an apt-get update run' do
         # don't change the apt_update exec's refreshonly attribute. (it should be true)
-        is_expected.to contain_exec('apt_update').with('refreshonly' => true)
+        expect(subject).to contain_exec('apt_update').with('refreshonly' => true)
       end
     end
   end
@@ -177,7 +177,7 @@ describe 'apt::update', type: :class do
 
           it 'triggers an apt-get update run' do
             # set the apt_update exec\'s refreshonly attribute to false
-            is_expected.to contain_exec('apt_update').with('refreshonly' => false)
+            expect(subject).to contain_exec('apt_update').with('refreshonly' => false)
           end
         end
       end
@@ -203,7 +203,7 @@ describe 'apt::update', type: :class do
 
         it 'does not trigger an apt-get update run' do
           # don't change the apt_update exec\'s refreshonly attribute. (it should be true)
-          is_expected.to contain_exec('apt_update').with('refreshonly' => true)
+          expect(subject).to contain_exec('apt_update').with('refreshonly' => true)
         end
       end
 
@@ -229,7 +229,7 @@ describe 'apt::update', type: :class do
 
         it 'triggers an apt-get update run' do
           # set the apt_update exec\'s refreshonly attribute to false
-          is_expected.to contain_exec('apt_update').with('refreshonly' => false)
+          expect(subject).to contain_exec('apt_update').with('refreshonly' => false)
         end
       end
     end

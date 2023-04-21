@@ -58,7 +58,7 @@ describe Puppet::Type.type(:apt_key).provider(:apt_key) do
     it 'apt_key with content set and source nil' do
       expect(described_class).to receive(:apt_key).with(['adv', '--no-tty',
                                                          '--keyserver',
-                                                         :"keyserver.ubuntu.com",
+                                                         :'keyserver.ubuntu.com',
                                                          '--recv-keys',
                                                          'C105B9DE'])
       resource = Puppet::Type::Apt_key.new(name: 'source and content nil',
@@ -74,7 +74,7 @@ describe Puppet::Type.type(:apt_key).provider(:apt_key) do
     it 'apt_key content and source nil, options set' do
       expect(described_class).to receive(:apt_key).with(['adv', '--no-tty',
                                                          '--keyserver',
-                                                         :"keyserver.ubuntu.com",
+                                                         :'keyserver.ubuntu.com',
                                                          '--keyserver-options',
                                                          'jimno',
                                                          '--recv-keys',
@@ -149,7 +149,7 @@ describe Puppet::Type.type(:apt_key).provider(:apt_key) do
         it "#{key_type} #{value} is valid" do
           expect(described_class).to receive(:apt_key).with(array_including('adv', '--no-tty',
                                                                             '--keyserver',
-                                                                            :"keyserver.ubuntu.com",
+                                                                            :'keyserver.ubuntu.com',
                                                                             '--recv-keys'))
           resource = Puppet::Type::Apt_key.new(name: 'source and content nil',
                                                id: value,

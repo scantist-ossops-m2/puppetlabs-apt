@@ -49,9 +49,7 @@ Puppet::Type.type(:apt_key).provide(:apt_key) do
 
       expired = false
 
-      if line_hash[:key_expiry]
-        expired = Time.now >= line_hash[:key_expiry]
-      end
+      expired = Time.now >= line_hash[:key_expiry] if line_hash[:key_expiry]
 
       new(
         name: line_hash[:key_fingerprint],
@@ -171,9 +169,7 @@ Puppet::Type.type(:apt_key).provide(:apt_key) do
 
         found_match = false
         extracted_key.each_line do |line|
-          if line.chomp == name
-            found_match = true
-          end
+          found_match = true if line.chomp == name
         end
         unless found_match
           raise(_('The id in your manifest %{_resource} and the fingerprint from content/source don\'t match. Check for an error in the id and content/source is legitimate.') % { _resource: resource[:name] }) # rubocop:disable Layout/LineLength
@@ -196,9 +192,7 @@ Puppet::Type.type(:apt_key).provide(:apt_key) do
       # Breaking up the command like this is needed because it blows up
       # if --recv-keys isn't the last argument.
       command.push('adv', '--no-tty', '--keyserver', resource[:server])
-      unless resource[:options].nil?
-        command.push('--keyserver-options', resource[:options])
-      end
+      command.push('--keyserver-options', resource[:options]) unless resource[:options].nil?
       command.push('--recv-keys', resource[:id])
     elsif resource[:content]
       key_file = tempfile(resource[:content])

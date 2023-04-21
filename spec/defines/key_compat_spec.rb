@@ -51,15 +51,15 @@ describe 'apt::key', type: :define do
   describe 'normal operation' do
     describe 'default options' do
       it {
-        is_expected.to contain_apt_key(title).with(id: title,
-                                                   ensure: 'present',
-                                                   source: nil,
-                                                   server: 'keyserver.ubuntu.com',
-                                                   content: nil)
+        expect(subject).to contain_apt_key(title).with(id: title,
+                                                       ensure: 'present',
+                                                       source: nil,
+                                                       server: 'keyserver.ubuntu.com',
+                                                       content: nil)
       }
 
       it 'contains the apt_key present anchor' do
-        is_expected.to contain_anchor("apt_key #{title} present")
+        expect(subject).to contain_anchor("apt_key #{title} present")
       end
     end
 
@@ -75,15 +75,15 @@ describe 'apt::key', type: :define do
       end
 
       it 'contains the apt_key' do
-        is_expected.to contain_apt_key(title).with(id: GPG_KEY_ID,
-                                                   ensure: 'present',
-                                                   source: nil,
-                                                   server: 'keyserver.ubuntu.com',
-                                                   content: nil)
+        expect(subject).to contain_apt_key(title).with(id: GPG_KEY_ID,
+                                                       ensure: 'present',
+                                                       source: nil,
+                                                       server: 'keyserver.ubuntu.com',
+                                                       content: nil)
       end
 
       it 'contains the apt_key present anchor' do
-        is_expected.to contain_anchor("apt_key #{GPG_KEY_ID} present")
+        expect(subject).to contain_anchor("apt_key #{GPG_KEY_ID} present")
       end
     end
 
@@ -95,15 +95,15 @@ describe 'apt::key', type: :define do
       end
 
       it 'contains the apt_key' do
-        is_expected.to contain_apt_key(title).with(id: title,
-                                                   ensure: 'absent',
-                                                   source: nil,
-                                                   server: 'keyserver.ubuntu.com',
-                                                   content: nil)
+        expect(subject).to contain_apt_key(title).with(id: title,
+                                                       ensure: 'absent',
+                                                       source: nil,
+                                                       server: 'keyserver.ubuntu.com',
+                                                       content: nil)
       end
 
       it 'contains the apt_key absent anchor' do
-        is_expected.to contain_anchor("apt_key #{title} absent")
+        expect(subject).to contain_anchor("apt_key #{title} absent")
       end
     end
 
@@ -118,11 +118,11 @@ describe 'apt::key', type: :define do
       end
 
       it 'contains the apt_key' do
-        is_expected.to contain_apt_key(title).with(contains_apt_key_example(title))
+        expect(subject).to contain_apt_key(title).with(contains_apt_key_example(title))
       end
 
       it 'contains the apt_key present anchor' do
-        is_expected.to contain_anchor("apt_key #{title} present")
+        expect(subject).to contain_anchor("apt_key #{title} present")
       end
     end
 
@@ -134,8 +134,8 @@ describe 'apt::key', type: :define do
       end
 
       it 'contains the apt_key' do
-        is_expected.to contain_apt_key(title).with(id: title,
-                                                   server: 'p-gp.m-it.edu')
+        expect(subject).to contain_apt_key(title).with(id: title,
+                                                       server: 'p-gp.m-it.edu')
       end
     end
 
@@ -147,8 +147,8 @@ describe 'apt::key', type: :define do
       end
 
       it 'contains the apt_key' do
-        is_expected.to contain_apt_key(title).with(id: title,
-                                                   server: 'hkp://pgp.mit.edu')
+        expect(subject).to contain_apt_key(title).with(id: title,
+                                                       server: 'hkp://pgp.mit.edu')
       end
     end
 
@@ -160,8 +160,8 @@ describe 'apt::key', type: :define do
       end
 
       it 'contains the apt_key' do
-        is_expected.to contain_apt_key(title).with(id: title,
-                                                   server: 'hkp://pgp.mit.edu:80')
+        expect(subject).to contain_apt_key(title).with(id: title,
+                                                       server: 'hkp://pgp.mit.edu:80')
       end
     end
   end
@@ -175,7 +175,7 @@ describe 'apt::key', type: :define do
       end
 
       it 'fails' do
-        is_expected.to raise_error(%r{expects a match})
+        expect(subject).to raise_error(%r{expects a match})
       end
     end
 
@@ -187,7 +187,7 @@ describe 'apt::key', type: :define do
       end
 
       it 'fails' do
-        is_expected.to raise_error(%r{expects a match})
+        expect(subject).to raise_error(%r{expects a match})
       end
     end
 
@@ -199,7 +199,7 @@ describe 'apt::key', type: :define do
       end
 
       it 'fails' do
-        is_expected.to raise_error(%r{expects a match})
+        expect(subject).to raise_error(%r{expects a match})
       end
     end
 
@@ -211,7 +211,7 @@ describe 'apt::key', type: :define do
       end
 
       it 'fails' do
-        is_expected.to raise_error(%r{expects a match})
+        expect(subject).to raise_error(%r{expects a match})
       end
     end
 
@@ -223,11 +223,11 @@ describe 'apt::key', type: :define do
       end
 
       it 'fails' do
-        is_expected.to raise_error(%r{expects a match})
+        expect(subject).to raise_error(%r{expects a match})
       end
     end
 
-    context 'with incorrect protocol for  url' do
+    context 'with incorrect protocol for url' do
       let :params do
         {
           server: 'abc://pgp.mit.edu:80',
@@ -235,7 +235,7 @@ describe 'apt::key', type: :define do
       end
 
       it 'fails' do
-        is_expected.to raise_error(%r{expects a match})
+        expect(subject).to raise_error(%r{expects a match})
       end
     end
 
@@ -247,7 +247,7 @@ describe 'apt::key', type: :define do
       end
 
       it 'fails' do
-        is_expected.to raise_error(%r{expects a match})
+        expect(subject).to raise_error(%r{expects a match})
       end
     end
 
@@ -259,7 +259,7 @@ describe 'apt::key', type: :define do
       end
 
       it 'fails' do
-        is_expected.to raise_error(%r{expects a match})
+        expect(subject).to raise_error(%r{expects a match})
       end
     end
 
@@ -271,7 +271,7 @@ describe 'apt::key', type: :define do
       end
 
       it 'fails' do
-        is_expected.to raise_error(%r{expects a match})
+        expect(subject).to raise_error(%r{expects a match})
       end
     end
 
@@ -281,7 +281,7 @@ describe 'apt::key', type: :define do
       end
 
       it 'fails' do
-        is_expected.to raise_error(%r{expects a match})
+        expect(subject).to raise_error(%r{expects a match})
       end
     end
 
@@ -293,7 +293,7 @@ describe 'apt::key', type: :define do
       end
 
       it 'fails' do
-        is_expected.to raise_error(%r{evaluating a Resource})
+        expect(subject).to raise_error(%r{evaluating a Resource})
       end
     end
 
@@ -305,7 +305,7 @@ describe 'apt::key', type: :define do
       end
 
       it 'fails' do
-        is_expected.to raise_error(%r{expects a})
+        expect(subject).to raise_error(%r{expects a})
       end
     end
 
@@ -317,7 +317,7 @@ describe 'apt::key', type: :define do
       end
 
       it 'fails' do
-        is_expected.to raise_error(%r{expects a match})
+        expect(subject).to raise_error(%r{expects a match})
       end
     end
 
@@ -329,7 +329,7 @@ describe 'apt::key', type: :define do
       end
 
       it 'fails' do
-        is_expected.to raise_error(%r{expects a})
+        expect(subject).to raise_error(%r{expects a})
       end
     end
 
@@ -341,7 +341,7 @@ describe 'apt::key', type: :define do
       end
 
       it 'fails' do
-        is_expected.to raise_error(%r{Enum\['absent', 'present', 'refreshed'\]})
+        expect(subject).to raise_error(%r{Enum\['absent', 'present', 'refreshed'\]})
       end
     end
 
@@ -351,21 +351,21 @@ describe 'apt::key', type: :define do
       end
 
       it 'contains the duplicate apt::key resource' do
-        is_expected.to contain_apt__key('duplicate').with(id: title,
-                                                          ensure: 'present')
+        expect(subject).to contain_apt__key('duplicate').with(id: title,
+                                                              ensure: 'present')
       end
 
       it 'contains the original apt::key resource' do
-        is_expected.to contain_apt__key(title).with(id: title,
-                                                    ensure: 'present')
+        expect(subject).to contain_apt__key(title).with(id: title,
+                                                        ensure: 'present')
       end
 
       it 'contains the native apt_key' do
-        is_expected.to contain_apt_key('duplicate').with(apt_key_example(title))
+        expect(subject).to contain_apt_key('duplicate').with(apt_key_example(title))
       end
 
       it 'does not contain the original apt_key' do
-        is_expected.not_to contain_apt_key(title)
+        expect(subject).not_to contain_apt_key(title)
       end
     end
 
@@ -375,7 +375,7 @@ describe 'apt::key', type: :define do
       end
 
       it 'informs the user of the impossibility' do
-        is_expected.to raise_error(%r{already ensured as absent})
+        expect(subject).to raise_error(%r{already ensured as absent})
       end
     end
   end

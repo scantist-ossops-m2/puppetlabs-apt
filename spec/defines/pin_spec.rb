@@ -67,7 +67,7 @@ describe 'apt::pin', type: :define do
     it { is_expected.to contain_apt__setting('pref-my_pin').with_content(%r{Explanation: foo\nPackage: \*\nPin: release a=1, n=bar, v=2, c=baz, o=foobar, l=foobaz\nPin-Priority: 10\n}) }
 
     it {
-      is_expected.to contain_apt__setting('pref-my_pin').with('priority' => 99)
+      expect(subject).to contain_apt__setting('pref-my_pin').with('priority' => 99)
     }
   end
 
@@ -79,7 +79,7 @@ describe 'apt::pin', type: :define do
     end
 
     it {
-      is_expected.to contain_apt__setting('pref-my_pin').with('ensure' => 'absent')
+      expect(subject).to contain_apt__setting('pref-my_pin').with('ensure' => 'absent')
     }
   end
 
@@ -98,7 +98,7 @@ describe 'apt::pin', type: :define do
       end
 
       it do
-        is_expected.to raise_error(Puppet::Error, %r{expects an Integer value, got String})
+        expect(subject).to raise_error(Puppet::Error, %r{expects an Integer value, got String})
       end
     end
 
@@ -110,7 +110,7 @@ describe 'apt::pin', type: :define do
       end
 
       it do
-        is_expected.to raise_error(Puppet::Error, %r{parameter version cannot be used in general form})
+        expect(subject).to raise_error(Puppet::Error, %r{parameter version cannot be used in general form})
       end
     end
 
@@ -123,7 +123,7 @@ describe 'apt::pin', type: :define do
       end
 
       it do
-        is_expected.to raise_error(Puppet::Error, %r{parameters release and origin are mutually exclusive})
+        expect(subject).to raise_error(Puppet::Error, %r{parameters release and origin are mutually exclusive})
       end
     end
 
@@ -137,7 +137,7 @@ describe 'apt::pin', type: :define do
       end
 
       it do
-        is_expected.to raise_error(Puppet::Error, %r{parameters release, origin, and version are mutually exclusive})
+        expect(subject).to raise_error(Puppet::Error, %r{parameters release, origin, and version are mutually exclusive})
       end
     end
 
@@ -151,7 +151,7 @@ describe 'apt::pin', type: :define do
       end
 
       it do
-        is_expected.to raise_error(Puppet::Error, %r{parameters release, origin, and version are mutually exclusive})
+        expect(subject).to raise_error(Puppet::Error, %r{parameters release, origin, and version are mutually exclusive})
       end
     end
   end

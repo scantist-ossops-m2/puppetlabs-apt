@@ -35,7 +35,7 @@ describe 'apt::source', type: :define do
     end
 
     it {
-      is_expected.to contain_apt__setting('list-my_source').with_content(%r{# my_source\ndeb-src http://debian.mirror.iweb.ca/debian/ stretch main\n})
+      expect(subject).to contain_apt__setting('list-my_source').with_content(%r{# my_source\ndeb-src http://debian.mirror.iweb.ca/debian/ stretch main\n})
     }
   end
 
@@ -55,19 +55,19 @@ describe 'apt::source', type: :define do
     end
 
     it {
-      is_expected.to contain_apt__setting('list-my_source').with_content(%r{# foo\ndeb \[arch=x86_64 trusted=yes\] http://debian.mirror.iweb.ca/debian/ sid testing\n})
-                                                           .without_content(%r{deb-src})
+      expect(subject).to contain_apt__setting('list-my_source').with_content(%r{# foo\ndeb \[arch=x86_64 trusted=yes\] http://debian.mirror.iweb.ca/debian/ sid testing\n})
+                                                               .without_content(%r{deb-src})
     }
 
     it {
-      is_expected.to contain_apt__pin('my_source').that_comes_before('Apt::Setting[list-my_source]').with('ensure' => 'present',
-                                                                                                          'priority' => '10',
-                                                                                                          'origin' => 'debian.mirror.iweb.ca')
+      expect(subject).to contain_apt__pin('my_source').that_comes_before('Apt::Setting[list-my_source]').with('ensure' => 'present',
+                                                                                                              'priority' => '10',
+                                                                                                              'origin' => 'debian.mirror.iweb.ca')
     }
 
     it {
-      is_expected.to contain_apt__key("Add key: #{GPG_KEY_ID} from Apt::Source my_source").that_comes_before('Apt::Setting[list-my_source]').with('ensure' => 'present',
-                                                                                                                                                  'id' => GPG_KEY_ID)
+      expect(subject).to contain_apt__key("Add key: #{GPG_KEY_ID} from Apt::Source my_source").that_comes_before('Apt::Setting[list-my_source]').with('ensure' => 'present',
+                                                                                                                                                      'id' => GPG_KEY_ID)
     }
   end
 
@@ -104,7 +104,7 @@ describe 'apt::source', type: :define do
     end
 
     it {
-      is_expected.to contain_apt__setting('list-my_source').with_content(%r{# my_source\ndeb \[arch=x86_64\] http://debian.mirror.iweb.ca/debian/ stretch main\n})
+      expect(subject).to contain_apt__setting('list-my_source').with_content(%r{# my_source\ndeb \[arch=x86_64\] http://debian.mirror.iweb.ca/debian/ stretch main\n})
     }
   end
 
@@ -116,7 +116,7 @@ describe 'apt::source', type: :define do
     end
 
     it {
-      is_expected.to contain_apt__setting('list-my_source').with('ensure' => 'absent')
+      expect(subject).to contain_apt__setting('list-my_source').with('ensure' => 'absent')
     }
   end
 
@@ -139,7 +139,7 @@ describe 'apt::source', type: :define do
       end
 
       it do
-        is_expected.to raise_error(Puppet::Error, %r{os.distro.codename fact not available: release parameter required})
+        expect(subject).to raise_error(Puppet::Error, %r{os.distro.codename fact not available: release parameter required})
       end
     end
   end

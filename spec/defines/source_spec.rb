@@ -33,7 +33,7 @@ describe 'apt::source' do
   context 'with defaults' do
     context 'without location' do
       it do
-        is_expected.to raise_error(Puppet::Error, %r{source entry without specifying a location})
+        expect(subject).to raise_error(Puppet::Error, %r{source entry without specifying a location})
       end
     end
 
@@ -41,8 +41,8 @@ describe 'apt::source' do
       let(:params) { { location: 'hello.there' } }
 
       it {
-        is_expected.to contain_apt__setting('list-my_source').with(ensure: 'present').without_content(%r{# my_source\ndeb-src hello.there wheezy main\n})
-        is_expected.not_to contain_package('apt-transport-https')
+        expect(subject).to contain_apt__setting('list-my_source').with(ensure: 'present').without_content(%r{# my_source\ndeb-src hello.there wheezy main\n})
+        expect(subject).not_to contain_package('apt-transport-https')
       }
     end
   end
@@ -59,16 +59,16 @@ describe 'apt::source' do
       end
 
       it {
-        is_expected.to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{hello.there stretch main\n})
+        expect(subject).to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{hello.there stretch main\n})
       }
 
       it { is_expected.to contain_file('/etc/apt/sources.list.d/my_source.list').that_notifies('Class[Apt::Update]') }
 
       it {
-        is_expected.to contain_apt__pin('my_source').that_comes_before('Apt::Setting[list-my_source]').with(ensure: 'present',
-                                                                                                            priority: 1001,
-                                                                                                            explanation: 'wishwash',
-                                                                                                            release: 'wishwash')
+        expect(subject).to contain_apt__pin('my_source').that_comes_before('Apt::Setting[list-my_source]').with(ensure: 'present',
+                                                                                                                priority: 1001,
+                                                                                                                explanation: 'wishwash',
+                                                                                                                release: 'wishwash')
       }
     end
 
@@ -87,19 +87,19 @@ describe 'apt::source' do
       end
 
       it {
-        is_expected.to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{# foo\ndeb \[arch=x86_64 trusted=yes\] http://debian.mirror.iweb.ca/debian/ sid testing\n})
-                                                             .without_content(%r{deb-src})
+        expect(subject).to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{# foo\ndeb \[arch=x86_64 trusted=yes\] http://debian.mirror.iweb.ca/debian/ sid testing\n})
+                                                                 .without_content(%r{deb-src})
       }
 
       it {
-        is_expected.to contain_apt__pin('my_source').that_comes_before('Apt::Setting[list-my_source]').with(ensure: 'present',
-                                                                                                            priority: '10',
-                                                                                                            origin: 'debian.mirror.iweb.ca')
+        expect(subject).to contain_apt__pin('my_source').that_comes_before('Apt::Setting[list-my_source]').with(ensure: 'present',
+                                                                                                                priority: '10',
+                                                                                                                origin: 'debian.mirror.iweb.ca')
       }
 
       it {
-        is_expected.to contain_apt__key("Add key: #{GPG_KEY_ID} from Apt::Source my_source").that_comes_before('Apt::Setting[list-my_source]').with(ensure: 'present',
-                                                                                                                                                    id: GPG_KEY_ID)
+        expect(subject).to contain_apt__key("Add key: #{GPG_KEY_ID} from Apt::Source my_source").that_comes_before('Apt::Setting[list-my_source]').with(ensure: 'present',
+                                                                                                                                                        id: GPG_KEY_ID)
       }
     end
 
@@ -125,23 +125,23 @@ describe 'apt::source' do
       end
 
       it {
-        is_expected.to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{# foo\ndeb \[arch=x86_64 trusted=yes\] http://debian.mirror.iweb.ca/debian/ sid testing\n})
-                                                             .without_content(%r{deb-src})
+        expect(subject).to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{# foo\ndeb \[arch=x86_64 trusted=yes\] http://debian.mirror.iweb.ca/debian/ sid testing\n})
+                                                                 .without_content(%r{deb-src})
       }
 
       it {
-        is_expected.to contain_apt__pin('my_source').that_comes_before('Apt::Setting[list-my_source]').with(ensure: 'present',
-                                                                                                            priority: '10',
-                                                                                                            origin: 'debian.mirror.iweb.ca')
+        expect(subject).to contain_apt__pin('my_source').that_comes_before('Apt::Setting[list-my_source]').with(ensure: 'present',
+                                                                                                                priority: '10',
+                                                                                                                origin: 'debian.mirror.iweb.ca')
       }
 
       it {
-        is_expected.to contain_apt__key("Add key: #{GPG_KEY_ID} from Apt::Source my_source").that_comes_before('Apt::Setting[list-my_source]').with(ensure: 'refreshed',
-                                                                                                                                                    id: GPG_KEY_ID,
-                                                                                                                                                    server: 'pgp.mit.edu',
-                                                                                                                                                    content: 'GPG key content',
-                                                                                                                                                    source: 'http://apt.puppetlabs.com/pubkey.gpg',
-                                                                                                                                                    weak_ssl: true)
+        expect(subject).to contain_apt__key("Add key: #{GPG_KEY_ID} from Apt::Source my_source").that_comes_before('Apt::Setting[list-my_source]').with(ensure: 'refreshed',
+                                                                                                                                                        id: GPG_KEY_ID,
+                                                                                                                                                        server: 'pgp.mit.edu',
+                                                                                                                                                        content: 'GPG key content',
+                                                                                                                                                        source: 'http://apt.puppetlabs.com/pubkey.gpg',
+                                                                                                                                                        weak_ssl: true)
       }
     end
   end
@@ -155,7 +155,7 @@ describe 'apt::source' do
     end
 
     it {
-      is_expected.to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{# my_source\ndeb \[allow-insecure=yes\] hello.there stretch main\n})
+      expect(subject).to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{# my_source\ndeb \[allow-insecure=yes\] hello.there stretch main\n})
     }
   end
 
@@ -168,7 +168,7 @@ describe 'apt::source' do
     end
 
     it {
-      is_expected.to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{# my_source\ndeb \[trusted=yes\] hello.there stretch main\n})
+      expect(subject).to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{# my_source\ndeb \[trusted=yes\] hello.there stretch main\n})
     }
   end
 
@@ -181,7 +181,7 @@ describe 'apt::source' do
     end
 
     it {
-      is_expected.to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{# my_source\ndeb \[check-valid-until=false\] hello.there stretch main\n})
+      expect(subject).to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{# my_source\ndeb \[check-valid-until=false\] hello.there stretch main\n})
     }
   end
 
@@ -194,7 +194,7 @@ describe 'apt::source' do
     end
 
     it {
-      is_expected.to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{# my_source\ndeb hello.there stretch main\n})
+      expect(subject).to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{# my_source\ndeb hello.there stretch main\n})
     }
   end
 
@@ -207,7 +207,7 @@ describe 'apt::source' do
     end
 
     it {
-      is_expected.to contain_apt__setting('list-my_source')
+      expect(subject).to contain_apt__setting('list-my_source')
         .with(ensure: 'present')
         .with_content(%r{# my_source\ndeb \[signed-by=/usr/share/keyrings/foo-archive-keyring.gpg\] hello.there stretch main\n})
     }
@@ -224,7 +224,7 @@ describe 'apt::source' do
     end
 
     it {
-      is_expected.to contain_apt__setting('list-my_source')
+      expect(subject).to contain_apt__setting('list-my_source')
         .with(ensure: 'present')
         .with_content(%r{# my_source\ndeb \[arch=amd64 trusted=yes signed-by=/usr/share/keyrings/foo-archive-keyring.gpg\] hello.there stretch main\n})
     }
@@ -239,7 +239,7 @@ describe 'apt::source' do
     end
 
     it {
-      is_expected.to contain_package('apt-transport-https')
+      expect(subject).to contain_package('apt-transport-https')
     }
   end
 
@@ -270,7 +270,7 @@ describe 'apt::source' do
     end
 
     it {
-      is_expected.to contain_package('apt-transport-https')
+      expect(subject).to contain_package('apt-transport-https')
     }
   end
 
@@ -299,7 +299,7 @@ describe 'apt::source' do
     end
 
     it {
-      is_expected.not_to contain_package('apt-transport-https')
+      expect(subject).not_to contain_package('apt-transport-https')
     }
   end
 
@@ -329,7 +329,7 @@ describe 'apt::source' do
     end
 
     it {
-      is_expected.to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{# my_source\ndeb-src \[arch=x86_64\] hello.there wheezy main\n})
+      expect(subject).to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{# my_source\ndeb-src \[arch=x86_64\] hello.there wheezy main\n})
     }
   end
 
@@ -345,7 +345,7 @@ describe 'apt::source' do
     end
 
     it {
-      is_expected.to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{# my_source\ndeb-src hello.there stretch main\n})
+      expect(subject).to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{# my_source\ndeb-src hello.there stretch main\n})
     }
   end
 
@@ -358,7 +358,7 @@ describe 'apt::source' do
     end
 
     it {
-      is_expected.to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{# my_source\ndeb hello.there stretch main\ndeb-src hello.there stretch main\n})
+      expect(subject).to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{# my_source\ndeb hello.there stretch main\ndeb-src hello.there stretch main\n})
     }
   end
 
@@ -371,7 +371,7 @@ describe 'apt::source' do
     end
 
     it {
-      is_expected.to contain_apt__setting('list-my_source').with(ensure: 'present').without_content(%r{deb-src hello.there wheezy main\n})
+      expect(subject).to contain_apt__setting('list-my_source').with(ensure: 'present').without_content(%r{deb-src hello.there wheezy main\n})
     }
 
     it { is_expected.to contain_apt__setting('list-my_source').without_content(%r{deb hello.there wheezy main\n}) }
@@ -386,7 +386,7 @@ describe 'apt::source' do
     end
 
     it {
-      is_expected.to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{deb-src hello.there stretch main\n})
+      expect(subject).to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{deb-src hello.there stretch main\n})
     }
 
     it { is_expected.to contain_apt__setting('list-my_source').without_content(%r{deb hello.there stretch main\n}) }
@@ -400,7 +400,7 @@ describe 'apt::source' do
     end
 
     it {
-      is_expected.to contain_apt__setting('list-my_source').with(ensure: 'absent')
+      expect(subject).to contain_apt__setting('list-my_source').with(ensure: 'absent')
     }
   end
 
@@ -424,7 +424,7 @@ describe 'apt::source' do
       let(:params) { { location: 'hello.there' } }
 
       it do
-        is_expected.to raise_error(Puppet::Error, %r{os.distro.codename fact not available: release parameter required})
+        expect(subject).to raise_error(Puppet::Error, %r{os.distro.codename fact not available: release parameter required})
       end
     end
 
@@ -443,7 +443,7 @@ describe 'apt::source' do
       end
 
       it do
-        is_expected.to raise_error(Puppet::Error, %r{expects a value})
+        expect(subject).to raise_error(Puppet::Error, %r{expects a value})
       end
     end
 
