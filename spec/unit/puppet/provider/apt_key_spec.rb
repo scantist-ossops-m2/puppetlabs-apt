@@ -43,7 +43,7 @@ OUTPUT
         ['adv', '--no-tty', '--list-keys', '--with-colons', '--fingerprint', '--fixed-list-mode'],
       ).and_return(command_output)
     end
-    it 'returns 2 resources' do
+    it 'returns 2 resources' do # rubocop:disable RSpec/MultipleExpectations
       expect(described_class.instances.size).to eq(2)
       expect(described_class.instances[0].name).to eq('630239CC130E1A7FD81A27B140976EAF437D05B5')
       expect(described_class.instances[0].id).to eq('40976EAF437D05B5')
@@ -88,7 +88,7 @@ OUTPUT
       expect(provider).to be_exist
     end
 
-    it 'apt_key with content set' do
+    it 'apt_key with content set' do # rubocop:disable RSpec/MultipleExpectations
       expect(described_class).to receive(:apt_key).with(array_including('add', kind_of(String)))
       resource = Puppet::Type::Apt_key.new(name: 'gsd',
                                            id: 'C105B9DE',
@@ -102,7 +102,7 @@ OUTPUT
       expect(provider).to be_exist
     end
 
-    it 'apt_key with source set' do
+    it 'apt_key with source set' do # rubocop:disable RSpec/MultipleExpectations
       expect(described_class).to receive(:apt_key).with(array_including('add', kind_of(String)))
       resource = Puppet::Type::Apt_key.new(name: 'gsd',
                                            id: 'C105B9DE',
@@ -116,7 +116,7 @@ OUTPUT
       expect(provider).to be_exist
     end
 
-    it 'apt_key with source and weak ssl verify set' do
+    it 'apt_key with source and weak ssl verify set' do # rubocop:disable RSpec/MultipleExpectations
       expect(described_class).to receive(:apt_key).with(array_including('add', kind_of(String)))
       resource = Puppet::Type::Apt_key.new(name: 'gsd',
                                            id: 'C105B9DE',

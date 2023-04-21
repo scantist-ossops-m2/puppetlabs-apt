@@ -240,10 +240,6 @@ RSpec/LeakyConstantDeclaration:
     - 'spec/defines/source_compat_spec.rb'
     - 'spec/defines/source_spec.rb'
 
-# Offense count: 4
-RSpec/MultipleExpectations:
-  Max: 5
-
 # Offense count: 3
 # Configuration parameters: AllowSubject.
 RSpec/MultipleMemoizedHelpers:
