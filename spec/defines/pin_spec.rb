@@ -65,6 +65,7 @@ describe 'apt::pin', type: :define do
     end
 
     it { is_expected.to contain_apt__setting('pref-my_pin').with_content(%r{Explanation: foo\nPackage: \*\nPin: release a=1, n=bar, v=2, c=baz, o=foobar, l=foobaz\nPin-Priority: 10\n}) }
+
     it {
       is_expected.to contain_apt__setting('pref-my_pin').with('priority' => 99)
     }

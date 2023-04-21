@@ -24,7 +24,7 @@ describe 'apt::update', type: :class do
                 id: 'Debian',
               },
             },
-            'apt_update_last_success': factval,
+            apt_update_last_success: factval,
           }
         end
         let(:pre_condition) do
@@ -61,6 +61,7 @@ describe 'apt::update', type: :class do
         is_expected.to contain_exec('apt_update').with('refreshonly' => false)
       end
     end
+
     context 'and Exec[apt_update] refreshonly is overridden to true and has recent run' do
       let(:facts) do
         {
@@ -76,7 +77,7 @@ describe 'apt::update', type: :class do
               id: 'Debian',
             },
           },
-          'apt_update_last_success': Time.now.to_i,
+          apt_update_last_success: Time.now.to_i,
         }
       end
       let(:pre_condition) do
@@ -92,6 +93,7 @@ describe 'apt::update', type: :class do
       end
     end
   end
+
   context "when apt::update['frequency']='reluctantly'" do
     {
       'a recent run' => Time.now.to_i,
@@ -113,7 +115,7 @@ describe 'apt::update', type: :class do
                 id: 'Debian',
               },
             },
-            'apt_update_last_success': factval,
+            apt_update_last_success: factval,
           }
         end
         let(:pre_condition) { "class{ '::apt': update => {'frequency' => 'reluctantly' },}" }
@@ -149,6 +151,7 @@ describe 'apt::update', type: :class do
       end
     end
   end
+
   ['daily', 'weekly'].each do |update_frequency|
     context "when apt::update['frequency'] has the value of #{update_frequency}" do
       { 'we are due for a run' => 1_406_660_561, 'the update-success-stamp file does not exist' => -1 }.each_pair do |desc, factval|
@@ -167,7 +170,7 @@ describe 'apt::update', type: :class do
                   id: 'Debian',
                 },
               },
-              'apt_update_last_success': factval,
+              apt_update_last_success: factval,
             }
           end
           let(:pre_condition) { "class{ '::apt': update => {'frequency' => '#{update_frequency}',} }" }
@@ -193,7 +196,7 @@ describe 'apt::update', type: :class do
                 id: 'Debian',
               },
             },
-            'apt_update_last_success': Time.now.to_i,
+            apt_update_last_success: Time.now.to_i,
           }
         end
         let(:pre_condition) { "class{ '::apt': update => {'frequency' => '#{update_frequency}',} }" }
@@ -203,6 +206,7 @@ describe 'apt::update', type: :class do
           is_expected.to contain_exec('apt_update').with('refreshonly' => true)
         end
       end
+
       context 'when $apt_update_last_success is nil' do
         let(:facts) do
           {
@@ -218,7 +222,7 @@ describe 'apt::update', type: :class do
                 id: 'Debian',
               },
             },
-            'apt_update_last_success': nil,
+            apt_update_last_success: nil,
           }
         end
         let(:pre_condition) { "class{ '::apt': update => {'frequency' => '#{update_frequency}',} }" }

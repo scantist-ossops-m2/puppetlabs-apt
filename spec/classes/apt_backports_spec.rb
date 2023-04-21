@@ -31,6 +31,7 @@ describe 'apt::backports', type: :class do
                                                              pin: { 'priority' => 200, 'release' => 'stretch-backports' })
       }
     end
+
     context 'with defaults on ubuntu' do
       let(:facts) do
         {
@@ -57,6 +58,7 @@ describe 'apt::backports', type: :class do
                                                              pin: { 'priority' => 200, 'release' => 'bionac-backports' })
       }
     end
+
     context 'with everything set' do
       let(:facts) do
         {
@@ -92,6 +94,7 @@ describe 'apt::backports', type: :class do
                                                              pin: { 'priority' => 90, 'release' => 'vivid' })
       }
     end
+
     context 'when set things with hashes' do
       let(:facts) do
         {
@@ -126,6 +129,7 @@ describe 'apt::backports', type: :class do
       }
     end
   end
+
   describe 'mint tests' do
     let(:facts) do
       {
@@ -162,6 +166,7 @@ describe 'apt::backports', type: :class do
                                                              pin: { 'priority' => 200, 'release' => 'trusty-backports' })
       }
     end
+
     context 'with missing location' do
       let(:params) do
         {
@@ -175,6 +180,7 @@ describe 'apt::backports', type: :class do
         is_expected.to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, repos, and key})
       end
     end
+
     context 'with missing release' do
       let(:params) do
         {
@@ -188,6 +194,7 @@ describe 'apt::backports', type: :class do
         is_expected.to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, repos, and key})
       end
     end
+
     context 'with missing repos' do
       let(:params) do
         {
@@ -201,6 +208,7 @@ describe 'apt::backports', type: :class do
         is_expected.to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, repos, and key})
       end
     end
+
     context 'with missing key' do
       let(:params) do
         {
@@ -215,6 +223,7 @@ describe 'apt::backports', type: :class do
       end
     end
   end
+
   describe 'validation' do
     let(:facts) do
       {
@@ -244,6 +253,7 @@ describe 'apt::backports', type: :class do
         is_expected.to raise_error(Puppet::Error, %r{expects a})
       end
     end
+
     context 'with invalid release' do
       let(:params) do
         {
@@ -255,6 +265,7 @@ describe 'apt::backports', type: :class do
         is_expected.to raise_error(Puppet::Error, %r{expects a})
       end
     end
+
     context 'with invalid repos' do
       let(:params) do
         {
@@ -266,6 +277,7 @@ describe 'apt::backports', type: :class do
         is_expected.to raise_error(Puppet::Error, %r{expects a})
       end
     end
+
     context 'with invalid key' do
       let(:params) do
         {
@@ -277,6 +289,7 @@ describe 'apt::backports', type: :class do
         is_expected.to raise_error(Puppet::Error, %r{expects a})
       end
     end
+
     context 'with invalid pin' do
       let(:params) do
         {

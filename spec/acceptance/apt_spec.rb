@@ -45,6 +45,7 @@ describe 'apt class' do
         apply_manifest(everything_everything_pp, catch_failures: true)
       end
     end
+
     it 'stills work' do
       run_shell('apt-get update')
       run_shell('apt-get -y --force-yes upgrade')

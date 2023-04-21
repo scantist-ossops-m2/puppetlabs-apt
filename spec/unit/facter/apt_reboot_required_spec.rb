@@ -13,6 +13,7 @@ describe 'apt_reboot_required fact' do
       allow(File).to receive(:file?).and_return(true)
       allow(File).to receive(:file?).once.with('/var/run/reboot-required').and_return(true)
     end
+
     it { is_expected.to eq true }
   end
 
@@ -22,6 +23,7 @@ describe 'apt_reboot_required fact' do
       allow(File).to receive(:file?).and_return(true)
       allow(File).to receive(:file?).once.with('/var/run/reboot-required').and_return(false)
     end
+
     it { is_expected.to eq false }
   end
 end

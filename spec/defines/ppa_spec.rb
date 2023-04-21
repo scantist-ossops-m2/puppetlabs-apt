@@ -37,6 +37,7 @@ describe 'apt::ppa' do
     let(:title) { 'ppa:needs/substitution' }
 
     it { is_expected.not_to contain_package('python-software-properties') }
+
     it {
       is_expected.to contain_exec('add-apt-repository-ppa:needs/substitution')
         .that_notifies('Class[Apt::Update]')
@@ -168,6 +169,7 @@ describe 'apt::ppa' do
     let(:title) { 'ppa:needs/substitution' }
 
     it { is_expected.to contain_package('software-properties-common') }
+
     it {
       is_expected.to contain_exec('add-apt-repository-ppa:needs/substitution')
         .that_notifies('Class[Apt::Update]')
@@ -207,6 +209,7 @@ describe 'apt::ppa' do
     let(:title) { 'ppa:needs/substitution' }
 
     it { is_expected.not_to contain_package('python-software-properties') }
+
     it {
       is_expected.to contain_exec('add-apt-repository-ppa:needs/substitution')
         .that_notifies('Class[Apt::Update]')
@@ -250,6 +253,7 @@ describe 'apt::ppa' do
 
     it { is_expected.to compile.with_all_deps }
     it { is_expected.to contain_package('software-properties-common') }
+
     it {
       is_expected.to contain_exec('add-apt-repository-ppa:user/foo')
         .that_notifies('Class[Apt::Update]')
@@ -291,6 +295,7 @@ describe 'apt::ppa' do
     let(:title) { 'ppa:user/foo' }
 
     it { is_expected.to contain_package('software-properties-common') }
+
     it {
       is_expected.to contain_exec('add-apt-repository-ppa:user/foo')
         .that_notifies('Class[Apt::Update]')
@@ -332,6 +337,7 @@ describe 'apt::ppa' do
     let(:title) { 'ppa:user/foo' }
 
     it { is_expected.to contain_package('software-properties-common') }
+
     it {
       is_expected.to contain_exec('add-apt-repository-ppa:user/foo')
         .that_notifies('Class[Apt::Update]')
@@ -373,6 +379,7 @@ describe 'apt::ppa' do
     let(:title) { 'ppa:user/foo' }
 
     it { is_expected.to contain_package('software-properties-common') }
+
     it {
       is_expected.to contain_exec('add-apt-repository-ppa:user/foo')
         .that_notifies('Class[Apt::Update]')

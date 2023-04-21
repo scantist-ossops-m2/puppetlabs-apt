@@ -22,6 +22,7 @@ describe Puppet::Type.type(:apt_key).provider(:apt_key) do
         ['adv', '--no-tty', '--list-keys', '--with-colons', '--fingerprint', '--fixed-list-mode'],
       ).and_return('uid:-::::1284991450::07BEBE04F4AE4A8E885A761325717D8509D9C1DC::Ubuntu Extras Archive Automatic Signing Key <ftpmaster@ubuntu.com>::::::::::0:')
     end
+
     it 'returns no resources' do
       expect(described_class.instances.size).to eq(0)
     end
@@ -43,6 +44,7 @@ describe Puppet::Type.type(:apt_key).provider(:apt_key) do
         ['adv', '--no-tty', '--list-keys', '--with-colons', '--fingerprint', '--fixed-list-mode'],
       ).and_return(command_output)
     end
+
     it 'returns 2 resources' do # rubocop:disable RSpec/MultipleExpectations
       expect(described_class.instances.size).to eq(2)
       expect(described_class.instances[0].name).to eq('630239CC130E1A7FD81A27B140976EAF437D05B5')

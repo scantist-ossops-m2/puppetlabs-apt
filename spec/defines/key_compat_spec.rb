@@ -57,6 +57,7 @@ describe 'apt::key', type: :define do
                                                    server: 'keyserver.ubuntu.com',
                                                    content: nil)
       }
+
       it 'contains the apt_key present anchor' do
         is_expected.to contain_anchor("apt_key #{title} present")
       end
@@ -80,6 +81,7 @@ describe 'apt::key', type: :define do
                                                    server: 'keyserver.ubuntu.com',
                                                    content: nil)
       end
+
       it 'contains the apt_key present anchor' do
         is_expected.to contain_anchor("apt_key #{GPG_KEY_ID} present")
       end
@@ -99,6 +101,7 @@ describe 'apt::key', type: :define do
                                                    server: 'keyserver.ubuntu.com',
                                                    content: nil)
       end
+
       it 'contains the apt_key absent anchor' do
         is_expected.to contain_anchor("apt_key #{title} absent")
       end
@@ -117,6 +120,7 @@ describe 'apt::key', type: :define do
       it 'contains the apt_key' do
         is_expected.to contain_apt_key(title).with(contains_apt_key_example(title))
       end
+
       it 'contains the apt_key present anchor' do
         is_expected.to contain_anchor("apt_key #{title} present")
       end
@@ -147,6 +151,7 @@ describe 'apt::key', type: :define do
                                                    server: 'hkp://pgp.mit.edu')
       end
     end
+
     context 'with url and port number' do
       let :params do
         {
@@ -197,6 +202,7 @@ describe 'apt::key', type: :define do
         is_expected.to raise_error(%r{expects a match})
       end
     end
+
     context 'when url character limit is exceeded' do
       let :params do
         {
@@ -208,6 +214,7 @@ describe 'apt::key', type: :define do
         is_expected.to raise_error(%r{expects a match})
       end
     end
+
     context 'with incorrect port number url' do
       let :params do
         {
@@ -219,6 +226,7 @@ describe 'apt::key', type: :define do
         is_expected.to raise_error(%r{expects a match})
       end
     end
+
     context 'with incorrect protocol for  url' do
       let :params do
         {
@@ -230,6 +238,7 @@ describe 'apt::key', type: :define do
         is_expected.to raise_error(%r{expects a match})
       end
     end
+
     context 'with missing port number url' do
       let :params do
         {
@@ -241,6 +250,7 @@ describe 'apt::key', type: :define do
         is_expected.to raise_error(%r{expects a match})
       end
     end
+
     context 'with url ending with a dot' do
       let :params do
         {
@@ -252,6 +262,7 @@ describe 'apt::key', type: :define do
         is_expected.to raise_error(%r{expects a match})
       end
     end
+
     context 'with url begin with a dash' do
       let(:params) do
         {
@@ -263,6 +274,7 @@ describe 'apt::key', type: :define do
         is_expected.to raise_error(%r{expects a match})
       end
     end
+
     context 'with invalid key' do
       let :title do
         'Out of rum. Why? Why are we out of rum?'

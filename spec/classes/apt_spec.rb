@@ -214,6 +214,7 @@ describe 'apt' do
           %r{Acquire::https::proxy "https://localhost:8080/";},
         )
       }
+
       it {
         is_expected.to contain_apt__setting('conf-proxy').with(priority: '01').with_content(
           %r{Acquire::http::proxy "http://localhost:8080/";},
@@ -232,6 +233,7 @@ describe 'apt' do
       }
     end
   end
+
   context 'with lots of non-defaults' do
     let :params do
       {

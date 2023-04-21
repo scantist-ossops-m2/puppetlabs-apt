@@ -22,14 +22,6 @@ Lint/ConstantDefinitionInBlock:
     - 'spec/defines/source_spec.rb'
 
 # Offense count: 6
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: strict, consistent
-Lint/SymbolConversion:
-  Exclude:
-    - 'spec/classes/apt_update_spec.rb'
-
-# Offense count: 6
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
 Metrics/AbcSize:
   Max: 40
@@ -68,21 +60,6 @@ RSpec/BeEq:
     - 'spec/unit/facter/apt_reboot_required_spec.rb'
     - 'spec/unit/puppet/type/apt_key_spec.rb'
 
-# Offense count: 8
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: be, be_nil
-RSpec/BeNil:
-  Exclude:
-    - 'spec/unit/facter/apt_dist_package_security_updates_spec.rb'
-    - 'spec/unit/facter/apt_dist_package_updates_spec.rb'
-    - 'spec/unit/facter/apt_dist_security_updates_spec.rb'
-    - 'spec/unit/facter/apt_dist_updates_spec.rb'
-    - 'spec/unit/facter/apt_package_security_updates_spec.rb'
-    - 'spec/unit/facter/apt_package_updates_spec.rb'
-    - 'spec/unit/facter/apt_security_updates_spec.rb'
-    - 'spec/unit/facter/apt_updates_spec.rb'
-
 # Offense count: 6
 # Configuration parameters: Prefixes, AllowedPatterns.
 # Prefixes: when, with, without
@@ -96,52 +73,6 @@ RSpec/ContextWording:
 # Configuration parameters: IgnoredMetadata.
 RSpec/DescribeClass:
   Enabled: false
-
-# Offense count: 23
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowConsecutiveOneLiners.
-RSpec/EmptyLineAfterExample:
-  Exclude:
-    - 'spec/acceptance/apt_key_provider_spec.rb'
-    - 'spec/acceptance/apt_spec.rb'
-    - 'spec/classes/apt_spec.rb'
-    - 'spec/defines/key_compat_spec.rb'
-    - 'spec/defines/key_spec.rb'
-    - 'spec/defines/pin_spec.rb'
-    - 'spec/defines/ppa_spec.rb'
-    - 'spec/defines/source_spec.rb'
-
-# Offense count: 39
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/EmptyLineAfterExampleGroup:
-  Exclude:
-    - 'spec/acceptance/apt_key_provider_spec.rb'
-    - 'spec/acceptance/init_task_spec.rb'
-    - 'spec/classes/apt_backports_spec.rb'
-    - 'spec/classes/apt_spec.rb'
-    - 'spec/classes/apt_update_spec.rb'
-    - 'spec/defines/key_compat_spec.rb'
-    - 'spec/defines/key_spec.rb'
-    - 'spec/defines/source_spec.rb'
-
-# Offense count: 24
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowConsecutiveOneLiners.
-RSpec/EmptyLineAfterHook:
-  Exclude:
-    - 'spec/acceptance/apt_key_provider_spec.rb'
-    - 'spec/unit/facter/apt_dist_has_updates_spec.rb'
-    - 'spec/unit/facter/apt_dist_package_security_updates_spec.rb'
-    - 'spec/unit/facter/apt_dist_package_updates_spec.rb'
-    - 'spec/unit/facter/apt_dist_security_updates_spec.rb'
-    - 'spec/unit/facter/apt_dist_updates_spec.rb'
-    - 'spec/unit/facter/apt_has_updates_spec.rb'
-    - 'spec/unit/facter/apt_package_security_updates_spec.rb'
-    - 'spec/unit/facter/apt_package_updates_spec.rb'
-    - 'spec/unit/facter/apt_reboot_required_spec.rb'
-    - 'spec/unit/facter/apt_security_updates_spec.rb'
-    - 'spec/unit/facter/apt_updates_spec.rb'
-    - 'spec/unit/puppet/provider/apt_key_spec.rb'
 
 # Offense count: 13
 # Configuration parameters: CountAsOne.

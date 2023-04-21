@@ -36,6 +36,7 @@ describe 'apt::source' do
         is_expected.to raise_error(Puppet::Error, %r{source entry without specifying a location})
       end
     end
+
     context 'with location' do
       let(:params) { { location: 'hello.there' } }
 
@@ -372,6 +373,7 @@ describe 'apt::source' do
     it {
       is_expected.to contain_apt__setting('list-my_source').with(ensure: 'present').without_content(%r{deb-src hello.there wheezy main\n})
     }
+
     it { is_expected.to contain_apt__setting('list-my_source').without_content(%r{deb hello.there wheezy main\n}) }
   end
 
@@ -386,6 +388,7 @@ describe 'apt::source' do
     it {
       is_expected.to contain_apt__setting('list-my_source').with(ensure: 'present').with_content(%r{deb-src hello.there stretch main\n})
     }
+
     it { is_expected.to contain_apt__setting('list-my_source').without_content(%r{deb hello.there stretch main\n}) }
   end
 

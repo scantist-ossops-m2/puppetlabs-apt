@@ -669,6 +669,7 @@ describe 'apt_key' do
     it 'add an apt_key resource' do
       apply_manifest_twice(ensure_present_pp)
     end
+
     it 'remove the apt_key resource' do
       apply_manifest_twice(ensure_absent_pp)
     end
@@ -855,6 +856,7 @@ describe 'apt_key' do
       after(:each) do
         run_shell('rm /tmp/fake-key.gpg')
       end
+
       it 'fails' do
         apply_manifest(path_bogus_content_pp, expect_failures: true) do |r|
           expect(r.stderr).to match(%r{no valid OpenPGP data found})
@@ -897,6 +899,7 @@ describe 'apt_key' do
       apply_manifest(refresh_del_key_pp)
       apply_manifest(refresh_pp, catch_failures: true)
     end
+
     context 'when refresh => true' do
       it 'updates an expired key' do
         apply_manifest(refresh_true_pp)
@@ -904,6 +907,7 @@ describe 'apt_key' do
         run_shell(PUPPETLABS_EXP_CHECK_COMMAND.to_s)
       end
     end
+
     context 'when refresh => false' do
       it 'does not replace an expired key' do
         apply_manifest(refresh_false_pp)
