@@ -17,6 +17,7 @@ def apt_get(action)
   end
   stdout, stderr, status = Open3.capture3(*cmd)
   raise Puppet::Error, stderr if status != 0
+
   { status: stdout.strip }
 end
 

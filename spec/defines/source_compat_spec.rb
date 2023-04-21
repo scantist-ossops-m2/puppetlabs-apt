@@ -42,14 +42,14 @@ describe 'apt::source', type: :define do
   context 'with no defaults' do
     let :params do
       {
-        'comment'        => 'foo',
-        'location'       => 'http://debian.mirror.iweb.ca/debian/',
-        'release'        => 'sid',
-        'repos'          => 'testing',
-        'include'        => { 'src' => false },
-        'key'            => GPG_KEY_ID,
-        'pin'            => '10',
-        'architecture'   => 'x86_64',
+        'comment' => 'foo',
+        'location' => 'http://debian.mirror.iweb.ca/debian/',
+        'release' => 'sid',
+        'repos' => 'testing',
+        'include' => { 'src' => false },
+        'key' => GPG_KEY_ID,
+        'pin' => '10',
+        'architecture' => 'x86_64',
         'allow_unsigned' => true,
       }
     end
@@ -62,7 +62,7 @@ describe 'apt::source', type: :define do
     it {
       is_expected.to contain_apt__pin('my_source').that_comes_before('Apt::Setting[list-my_source]').with('ensure' => 'present',
                                                                                                           'priority' => '10',
-                                                                                                          'origin'   => 'debian.mirror.iweb.ca')
+                                                                                                          'origin' => 'debian.mirror.iweb.ca')
     }
 
     it {
@@ -74,8 +74,8 @@ describe 'apt::source', type: :define do
   context 'when allow_insecure true' do
     let :params do
       {
-        'include'        => { 'src' => false },
-        'location'       => 'http://debian.mirror.iweb.ca/debian/',
+        'include' => { 'src' => false },
+        'location' => 'http://debian.mirror.iweb.ca/debian/',
         'allow_insecure' => true,
       }
     end
@@ -86,8 +86,8 @@ describe 'apt::source', type: :define do
   context 'when allow_unsigned true' do
     let :params do
       {
-        'include'        => { 'src' => false },
-        'location'       => 'http://debian.mirror.iweb.ca/debian/',
+        'include' => { 'src' => false },
+        'location' => 'http://debian.mirror.iweb.ca/debian/',
         'allow_unsigned' => true,
       }
     end
@@ -98,7 +98,7 @@ describe 'apt::source', type: :define do
   context 'with architecture equals x86_64' do
     let :params do
       {
-        'location'     => 'http://debian.mirror.iweb.ca/debian/',
+        'location' => 'http://debian.mirror.iweb.ca/debian/',
         'architecture' => 'x86_64',
       }
     end

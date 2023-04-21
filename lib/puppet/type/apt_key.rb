@@ -31,6 +31,7 @@ Puppet::Type.newtype(:apt_key) do
     if self[:content] && self[:source]
       raise(_('The properties content and source are mutually exclusive.'))
     end
+
     if self[:id].length < 40
       warning(_('The id should be a full fingerprint (40 characters), see README.'))
     end

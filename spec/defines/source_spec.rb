@@ -53,7 +53,7 @@ describe 'apt::source' do
           location: 'hello.there',
           pin: { 'release' => 'wishwash',
                  'explanation' => 'wishwash',
-                 'priority'    => 1001 },
+                 'priority' => 1001 },
         }
       end
 
@@ -114,7 +114,7 @@ describe 'apt::source' do
             'id' => GPG_KEY_ID,
             'server' => 'pgp.mit.edu',
             'content' => 'GPG key content',
-            'source'  => 'http://apt.puppetlabs.com/pubkey.gpg',
+            'source' => 'http://apt.puppetlabs.com/pubkey.gpg',
             'weak_ssl' => true,
           },
           pin: '10',

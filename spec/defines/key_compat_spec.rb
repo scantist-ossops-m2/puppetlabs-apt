@@ -170,7 +170,7 @@ describe 'apt::key', type: :define do
       end
 
       it 'fails' do
-        is_expected .to raise_error(%r{expects a match})
+        is_expected.to raise_error(%r{expects a match})
       end
     end
 
@@ -182,7 +182,7 @@ describe 'apt::key', type: :define do
       end
 
       it 'fails' do
-        is_expected .to raise_error(%r{expects a match})
+        is_expected.to raise_error(%r{expects a match})
       end
     end
 
@@ -194,7 +194,7 @@ describe 'apt::key', type: :define do
       end
 
       it 'fails' do
-        is_expected .to raise_error(%r{expects a match})
+        is_expected.to raise_error(%r{expects a match})
       end
     end
     context 'when url character limit is exceeded' do

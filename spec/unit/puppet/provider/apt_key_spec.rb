@@ -29,16 +29,16 @@ describe Puppet::Type.type(:apt_key).provider(:apt_key) do
 
   context 'self.instances multiple keys' do
     before :each do
-      command_output = <<-OUTPUT
-Executing: gpg --ignore-time-conflict --no-options --no-default-keyring --homedir /tmp/tmp.DU0GdRxjmE --no-auto-check-trustdb --trust-model always --keyring /etc/apt/trusted.gpg --primary-keyring /etc/apt/trusted.gpg --keyring /etc/apt/trusted.gpg.d/puppetlabs-pc1-keyring.gpg --no-tty --list-keys --with-colons --fingerprint --fixed-list-mode
-tru:t:1:1549900774:0:3:1:5
-pub:-:1024:17:40976EAF437D05B5:1095016255:::-:::scESC:
-fpr:::::::::630239CC130E1A7FD81A27B140976EAF437D05B5:
-uid:-::::1095016255::B84AE656F4F5A826C273A458512EF8E282754CE1::Ubuntu Archive Automatic Signing Key <ftpmaster@ubuntu.com>:
-sub:-:2048:16:251BEFF479164387:1095016263::::::e:
-pub:-:1024:17:46181433FBB75451:1104433784:::-:::scSC:
-fpr:::::::::C5986B4F1257FFA86632CBA746181433FBB75451:
-OUTPUT
+      command_output = <<~OUTPUT
+        Executing: gpg --ignore-time-conflict --no-options --no-default-keyring --homedir /tmp/tmp.DU0GdRxjmE --no-auto-check-trustdb --trust-model always --keyring /etc/apt/trusted.gpg --primary-keyring /etc/apt/trusted.gpg --keyring /etc/apt/trusted.gpg.d/puppetlabs-pc1-keyring.gpg --no-tty --list-keys --with-colons --fingerprint --fixed-list-mode
+        tru:t:1:1549900774:0:3:1:5
+        pub:-:1024:17:40976EAF437D05B5:1095016255:::-:::scESC:
+        fpr:::::::::630239CC130E1A7FD81A27B140976EAF437D05B5:
+        uid:-::::1095016255::B84AE656F4F5A826C273A458512EF8E282754CE1::Ubuntu Archive Automatic Signing Key <ftpmaster@ubuntu.com>:
+        sub:-:2048:16:251BEFF479164387:1095016263::::::e:
+        pub:-:1024:17:46181433FBB75451:1104433784:::-:::scSC:
+        fpr:::::::::C5986B4F1257FFA86632CBA746181433FBB75451:
+      OUTPUT
       allow(described_class).to receive(:apt_key).with(
         ['adv', '--no-tty', '--list-keys', '--with-colons', '--fingerprint', '--fixed-list-mode'],
       ).and_return(command_output)
@@ -136,11 +136,11 @@ OUTPUT
         '32bit key id' => 'EF8D349F',
         '64bit key id' => '7F438280EF8D349F',
         '160bit key fingerprint' => '6F6B15509CF8E59E6E469F327F438280EF8D349F',
-        '32bit key id lowercase' =>   'EF8D349F'.downcase,
-        '64bit key id lowercase' =>   '7F438280EF8D349F'.downcase,
+        '32bit key id lowercase' => 'EF8D349F'.downcase,
+        '64bit key id lowercase' => '7F438280EF8D349F'.downcase,
         '160bit key fingerprint lowercase' => '6F6B15509CF8E59E6E469F327F438280EF8D349F'.downcase,
-        '32bit key id 0x formatted' =>   '0xEF8D349F',
-        '64bit key id 0x formatted' =>   '0x7F438280EF8D349F',
+        '32bit key id 0x formatted' => '0xEF8D349F',
+        '64bit key id 0x formatted' => '0x7F438280EF8D349F',
         '160bit key fingerprint 0x formatted' => '0x6F6B15509CF8E59E6E469F327F438280EF8D349F',
       }
       hash_of_keys.each do |key_type, value|

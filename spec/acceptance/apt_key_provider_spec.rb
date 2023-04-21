@@ -111,7 +111,7 @@ refresh_pp = <<-MANIFEST
   =cXcR
   -----END PGP PUBLIC KEY BLOCK-----'
           }
-  MANIFEST
+MANIFEST
 
 gpg_key_pp = <<-MANIFEST
           apt_key { 'puppetlabs':
@@ -170,7 +170,7 @@ gpg_key_pp = <<-MANIFEST
   =mMjt
   -----END PGP PUBLIC KEY BLOCK-----",
             }
-  MANIFEST
+MANIFEST
 
 multiple_keys_pp = <<-MANIFEST
           apt_key { 'puppetlabs':
@@ -423,7 +423,7 @@ multiple_keys_pp = <<-MANIFEST
   =TREp
   -----END PGP PUBLIC KEY BLOCK----- ",
             }
-  MANIFEST
+MANIFEST
 
 bogus_key_pp = <<-MANIFEST
         apt_key { 'puppetlabs':
@@ -431,7 +431,7 @@ bogus_key_pp = <<-MANIFEST
           ensure  => 'present',
           content => 'For posterity: such content, much bogus, wow',
         }
-  MANIFEST
+MANIFEST
 
 hkp_pool_pp = <<-MANIFEST
         apt_key { 'puppetlabs':
@@ -439,7 +439,7 @@ hkp_pool_pp = <<-MANIFEST
           ensure => 'present',
           server => 'hkp://keyserver.ubuntu.com:80',
         }
-  MANIFEST
+MANIFEST
 
 hkps_protocol_supported = host_inventory['facter']['os']['family'] =~ %r{Ubuntu}i && \
                           host_inventory['facter']['os']['release']['major'] =~ %r{^18\.04}
@@ -451,7 +451,7 @@ if hkps_protocol_supported
             ensure => 'present',
             server => 'hkps://keyserver.ubuntu.com',
           }
-    MANIFEST
+  MANIFEST
 end
 
 nonexistant_key_server_pp = <<-MANIFEST
@@ -460,7 +460,7 @@ nonexistant_key_server_pp = <<-MANIFEST
           ensure => 'present',
           server => 'nonexistant.key.server',
         }
-  MANIFEST
+MANIFEST
 
 dot_server_pp = <<-MANIFEST
         apt_key { 'puppetlabs':
@@ -468,7 +468,7 @@ dot_server_pp = <<-MANIFEST
           ensure => 'present',
           server => '.pgp.key.server',
         }
-  MANIFEST
+MANIFEST
 
 http_works_pp = <<-MANIFEST
         apt_key { 'puppetlabs':
@@ -476,7 +476,7 @@ http_works_pp = <<-MANIFEST
           ensure => 'present',
           source => 'http://#{PUPPETLABS_APT_URL}/#{PUPPETLABS_GPG_KEY_FILE}',
         }
-  MANIFEST
+MANIFEST
 
 http_works_userinfo_pp = <<-MANIFEST
         apt_key { 'puppetlabs':
@@ -484,7 +484,7 @@ http_works_userinfo_pp = <<-MANIFEST
           ensure => 'present',
           source => 'http://dummyuser:dummypassword@#{PUPPETLABS_APT_URL}/#{PUPPETLABS_GPG_KEY_FILE}',
         }
-  MANIFEST
+MANIFEST
 
 four_oh_four_pp = <<-MANIFEST
         apt_key { 'puppetlabs':
@@ -492,7 +492,7 @@ four_oh_four_pp = <<-MANIFEST
           ensure => 'present',
           source => 'http://#{PUPPETLABS_APT_URL}/herpderp.gpg',
         }
-  MANIFEST
+MANIFEST
 
 socket_error_pp = <<-MANIFEST
         apt_key { 'puppetlabs':
@@ -500,7 +500,7 @@ socket_error_pp = <<-MANIFEST
           ensure => 'present',
           source => 'http://apt.puppetlabss.com/herpderp.gpg',
         }
-  MANIFEST
+MANIFEST
 
 ftp_works_pp = <<-MANIFEST
         apt_key { 'CentOS 6':
@@ -508,7 +508,7 @@ ftp_works_pp = <<-MANIFEST
           ensure => 'present',
           source => 'ftp://#{CENTOS_REPO_URL}/#{CENTOS_GPG_KEY_FILE}',
         }
-  MANIFEST
+MANIFEST
 
 ftp_550_pp = <<-MANIFEST
         apt_key { 'CentOS 6':
@@ -516,7 +516,7 @@ ftp_550_pp = <<-MANIFEST
           ensure => 'present',
           source => 'ftp://#{CENTOS_REPO_URL}/herpderp.gpg',
         }
-  MANIFEST
+MANIFEST
 
 ftp_socket_error_pp = <<-MANIFEST
         apt_key { 'puppetlabs':
@@ -524,7 +524,7 @@ ftp_socket_error_pp = <<-MANIFEST
           ensure => 'present',
           source => 'ftp://apt.puppetlabss.com/herpderp.gpg',
         }
-  MANIFEST
+MANIFEST
 
 https_works_pp = <<-MANIFEST
         apt_key { 'puppetlabs':
@@ -532,7 +532,7 @@ https_works_pp = <<-MANIFEST
           ensure => 'present',
           source => 'https://#{PUPPETLABS_APT_URL}/#{PUPPETLABS_GPG_KEY_FILE}',
         }
-  MANIFEST
+MANIFEST
 
 https_with_weak_ssl_works_pp = <<-MANIFEST
         apt_key { 'puppetlabs':
@@ -541,7 +541,7 @@ https_with_weak_ssl_works_pp = <<-MANIFEST
           source => 'https://#{PUPPETLABS_APT_URL}/#{PUPPETLABS_GPG_KEY_FILE}',
           weak_ssl => true,
         }
-  MANIFEST
+MANIFEST
 
 https_userinfo_pp = <<-MANIFEST
         apt_key { 'puppetlabs':
@@ -549,7 +549,7 @@ https_userinfo_pp = <<-MANIFEST
           ensure => 'present',
           source => 'https://dummyuser:dummypassword@#{PUPPETLABS_APT_URL}/#{PUPPETLABS_GPG_KEY_FILE}',
         }
-  MANIFEST
+MANIFEST
 
 https_404_pp = <<-MANIFEST
         apt_key { 'puppetlabs':
@@ -557,7 +557,7 @@ https_404_pp = <<-MANIFEST
           ensure => 'present',
           source => 'https://#{PUPPETLABS_APT_URL}/herpderp.gpg',
         }
-  MANIFEST
+MANIFEST
 
 https_socket_error_pp = <<-MANIFEST
         apt_key { 'puppetlabs':
@@ -565,7 +565,7 @@ https_socket_error_pp = <<-MANIFEST
           ensure => 'present',
           source => 'https://apt.puppetlabss.com/herpderp.gpg',
         }
-  MANIFEST
+MANIFEST
 
 path_exists_pp = <<-MANIFEST
         apt_key { 'puppetlabs':
@@ -573,7 +573,7 @@ path_exists_pp = <<-MANIFEST
           ensure => 'present',
           source => '/tmp/puppetlabs-pubkey.gpg',
         }
-  MANIFEST
+MANIFEST
 
 path_does_not_exist_pp = <<-MANIFEST
         apt_key { 'puppetlabs':
@@ -581,7 +581,7 @@ path_does_not_exist_pp = <<-MANIFEST
           ensure => 'present',
           source => '/tmp/totally_bogus.file',
         }
-  MANIFEST
+MANIFEST
 
 path_bogus_content_pp = <<-MANIFEST
         apt_key { 'puppetlabs':
@@ -589,7 +589,7 @@ path_bogus_content_pp = <<-MANIFEST
           ensure => 'present',
           source => '/tmp/fake-key.gpg',
         }
-  MANIFEST
+MANIFEST
 
 debug_works_pp = <<-MANIFEST
         apt_key { 'puppetlabs':
@@ -597,7 +597,7 @@ debug_works_pp = <<-MANIFEST
           ensure  => 'present',
           options => 'debug',
         }
-  MANIFEST
+MANIFEST
 
 fingerprint_match_pp = <<-MANIFEST
         apt_key { 'puppetlabs':
@@ -605,7 +605,7 @@ fingerprint_match_pp = <<-MANIFEST
           ensure  => 'present',
           source  => 'https://#{PUPPETLABS_APT_URL}/#{PUPPETLABS_GPG_KEY_FILE}',
         }
-  MANIFEST
+MANIFEST
 
 fingerprint_does_not_match_pp = <<-MANIFEST
         apt_key { 'puppetlabs':
@@ -613,7 +613,7 @@ fingerprint_does_not_match_pp = <<-MANIFEST
           ensure  => 'present',
           source  => 'https://#{PUPPETLABS_APT_URL}/#{PUPPETLABS_GPG_KEY_FILE}',
         }
-  MANIFEST
+MANIFEST
 
 refresh_true_pp = <<-MANIFEST
         apt_key { '#{PUPPETLABS_EXP_KEY_LONG_ID}':
@@ -621,7 +621,7 @@ refresh_true_pp = <<-MANIFEST
           ensure  => 'present',
           refresh => true,
         }
-  MANIFEST
+MANIFEST
 
 refresh_false_pp = <<-MANIFEST
         apt_key { '#{PUPPETLABS_EXP_KEY_LONG_ID}':
@@ -657,14 +657,14 @@ describe 'apt_key' do
               id     => '#{CENTOS_GPG_KEY_LONG_ID}',
               ensure => 'present',
             }
-      MANIFEST
+    MANIFEST
 
     ensure_absent_pp = <<-MANIFEST
             apt_key { 'centos':
               id     => '#{CENTOS_GPG_KEY_LONG_ID}',
               ensure => 'absent',
             }
-      MANIFEST
+    MANIFEST
 
     it 'add an apt_key resource' do
       apply_manifest_twice(ensure_present_pp)

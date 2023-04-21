@@ -482,17 +482,17 @@ machine apt.example.com login aptlogin password supersecret
     let(:params) do
       { sources: {
         'debian_unstable' => {
-          'location'          => 'http://debian.mirror.iweb.ca/debian/',
-          'release'           => 'unstable',
-          'repos'             => 'main contrib non-free',
-          'key'               => { 'id' => '150C8614919D8446E01E83AF9AA38DCD55BE302B', 'server' => 'subkeys.pgp.net' },
-          'pin'               => '-10',
-          'include'           => { 'src' => true },
+          'location' => 'http://debian.mirror.iweb.ca/debian/',
+          'release' => 'unstable',
+          'repos' => 'main contrib non-free',
+          'key' => { 'id' => '150C8614919D8446E01E83AF9AA38DCD55BE302B', 'server' => 'subkeys.pgp.net' },
+          'pin' => '-10',
+          'include' => { 'src' => true },
         },
         'puppetlabs' => {
           'location' => 'http://apt.puppetlabs.com',
-          'repos'      => 'main',
-          'key'        => { 'id' => '6F6B15509CF8E59E6E469F327F438280EF8D349F', 'server' => 'pgp.mit.edu' },
+          'repos' => 'main',
+          'key' => { 'id' => '6F6B15509CF8E59E6E469F327F438280EF8D349F', 'server' => 'pgp.mit.edu' },
         },
       } }
     end
@@ -661,7 +661,7 @@ machine apt.example.com login aptlogin password supersecret
     let(:params) do
       { pins: {
         'stable' => { 'priority' => 600, 'order' => 50 },
-        'testing' =>  { 'priority' => 700, 'order' => 100 },
+        'testing' => { 'priority' => 700, 'order' => 100 },
       } }
     end
 

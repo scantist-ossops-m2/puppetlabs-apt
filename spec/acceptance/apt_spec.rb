@@ -29,7 +29,7 @@ everything_everything_pp = <<-MANIFEST
         },
         sources => $sources,
       }
-  MANIFEST
+MANIFEST
 
 describe 'apt class' do
   context 'with reset' do

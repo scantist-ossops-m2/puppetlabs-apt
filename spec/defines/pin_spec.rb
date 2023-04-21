@@ -31,7 +31,7 @@ describe 'apt::pin', type: :define do
     let :params do
       {
         'packages' => 'vim',
-        'version'  => '1',
+        'version' => '1',
       }
     end
 
@@ -42,7 +42,7 @@ describe 'apt::pin', type: :define do
     let :params do
       {
         'packages' => 'vim',
-        'origin'   => 'test',
+        'origin' => 'test',
       }
     end
 
@@ -52,15 +52,15 @@ describe 'apt::pin', type: :define do
   context 'without defaults' do
     let :params do
       {
-        'explanation'     => 'foo',
-        'order'           => 99,
-        'release'         => '1',
-        'codename'        => 'bar',
+        'explanation' => 'foo',
+        'order' => 99,
+        'release' => '1',
+        'codename' => 'bar',
         'release_version' => '2',
-        'component'       => 'baz',
-        'originator'      => 'foobar',
-        'label'           => 'foobaz',
-        'priority'        => 10,
+        'component' => 'baz',
+        'originator' => 'foobar',
+        'label' => 'foobaz',
+        'priority' => 10,
       }
     end
 
@@ -116,7 +116,7 @@ describe 'apt::pin', type: :define do
     context 'with packages == * and release and origin' do
       let :params do
         {
-          'origin'  => 'test',
+          'origin' => 'test',
           'release' => 'foo',
         }
       end
@@ -129,8 +129,8 @@ describe 'apt::pin', type: :define do
     context 'with specific release and origin' do
       let :params do
         {
-          'release'  => 'foo',
-          'origin'   => 'test',
+          'release' => 'foo',
+          'origin' => 'test',
           'packages' => 'vim',
         }
       end
@@ -143,8 +143,8 @@ describe 'apt::pin', type: :define do
     context 'with specific version and origin' do
       let :params do
         {
-          'version'  => '1',
-          'origin'   => 'test',
+          'version' => '1',
+          'origin' => 'test',
           'packages' => 'vim',
         }
       end

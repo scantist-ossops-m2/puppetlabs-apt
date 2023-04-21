@@ -120,6 +120,7 @@ Puppet::Type.type(:apt_key).provide(:apt_key) do
     parsed_value = URI.parse(value)
     if parsed_value.scheme.nil?
       raise(_('The file %{_value} does not exist') % { _value: value }) unless File.exist?(value)
+
       # Because the tempfile method has to return a live object to prevent GC
       # of the underlying file from occuring too early, we also have to return
       # a file object here.  The caller can still call the #path method on the

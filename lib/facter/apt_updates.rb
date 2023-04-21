@@ -14,6 +14,7 @@ def get_updates(upgrade_option)
       apt_updates = [[], []]
       apt_get_result.each_line do |line|
         next unless %r{^Inst\s}.match?(line)
+
         package = line.gsub(%r{^Inst\s([^\s]+)\s.*}, '\1').strip
         apt_updates[0].push(package)
         security_matches = [
