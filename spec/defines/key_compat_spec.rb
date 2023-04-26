@@ -21,8 +21,7 @@ def apt_key_example(title)
 end
 
 describe 'apt::key', type: :define do
-  let(:title) { '6F6B15509CF8E59E6E469F327F438280EF8D349F' }
-  let(:pre_condition) { 'include apt' }
+  let(:key_id) { '6F6B15509CF8E59E6E469F327F438280EF8D349F' }
   let(:facts) do
     {
       os: {
@@ -38,6 +37,14 @@ describe 'apt::key', type: :define do
         }
       }
     }
+  end
+
+  let :title do
+    key_id
+  end
+
+  let :pre_condition do
+    'include apt'
   end
 
   describe 'normal operation' do
@@ -62,12 +69,12 @@ describe 'apt::key', type: :define do
 
       let :params do
         {
-          id: title
+          id: key_id
         }
       end
 
       it 'contains the apt_key' do
-        expect(subject).to contain_apt_key(title).with(id: title,
+        expect(subject).to contain_apt_key(title).with(id: key_id,
                                                        ensure: 'present',
                                                        source: nil,
                                                        server: 'keyserver.ubuntu.com',
@@ -75,7 +82,7 @@ describe 'apt::key', type: :define do
       end
 
       it 'contains the apt_key present anchor' do
-        expect(subject).to contain_anchor("apt_key #{title} present")
+        expect(subject).to contain_anchor("apt_key #{key_id} present")
       end
     end
 
