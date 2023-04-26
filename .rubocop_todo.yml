@@ -6,12 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Lint/BooleanSymbol:
-  Exclude:
-    - 'spec/unit/puppet/type/apt_key_spec.rb'
-
 # Offense count: 3
 # Configuration parameters: AllowedMethods.
 # AllowedMethods: enums
@@ -52,13 +46,6 @@ Metrics/PerceivedComplexity:
 Performance/CollectionLiteralInLoop:
   Exclude:
     - 'spec/classes/apt_update_spec.rb'
-
-# Offense count: 6
-# This cop supports unsafe autocorrection (--autocorrect-all).
-RSpec/BeEq:
-  Exclude:
-    - 'spec/unit/facter/apt_reboot_required_spec.rb'
-    - 'spec/unit/puppet/type/apt_key_spec.rb'
 
 # Offense count: 6
 # Configuration parameters: Prefixes, AllowedPatterns.
@@ -138,13 +125,6 @@ RSpec/StubbedMock:
 
 # Offense count: 2
 Security/Open:
-  Exclude:
-    - 'lib/puppet/provider/apt_key/apt_key.rb'
-
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: MinBranchesCount.
-Style/CaseLikeIf:
   Exclude:
     - 'lib/puppet/provider/apt_key/apt_key.rb'
 
