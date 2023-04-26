@@ -32,7 +32,7 @@ everything_everything_pp = <<-MANIFEST
 MANIFEST
 
 describe 'apt class' do
-  context 'with reset' do
+  context 'with test start reset' do
     it 'fixes the sources.list' do
       run_shell('cp /etc/apt/sources.list /tmp')
     end
@@ -52,7 +52,7 @@ describe 'apt class' do
     end
   end
 
-  context 'with reset' do
+  context 'with test end reset' do
     it 'fixes the sources.list' do
       run_shell('cp /tmp/sources.list /etc/apt')
     end

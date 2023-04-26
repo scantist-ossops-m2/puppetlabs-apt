@@ -43,13 +43,6 @@ RSpec/ExampleLength:
   Max: 15
 
 # Offense count: 3
-RSpec/LeakyConstantDeclaration:
-  Exclude:
-    - 'spec/defines/key_compat_spec.rb'
-    - 'spec/defines/source_compat_spec.rb'
-    - 'spec/defines/source_spec.rb'
-
-# Offense count: 3
 # Configuration parameters: AllowSubject.
 RSpec/MultipleMemoizedHelpers:
   Max: 6
@@ -87,12 +80,6 @@ RSpec/NoExpectationExample:
     - 'spec/acceptance/apt_backports_spec.rb'
     - 'spec/acceptance/apt_key_provider_spec.rb'
     - 'spec/acceptance/apt_spec.rb'
-
-# Offense count: 4
-RSpec/RepeatedExampleGroupDescription:
-  Exclude:
-    - 'spec/acceptance/apt_spec.rb'
-    - 'spec/classes/apt_spec.rb'
 
 # Offense count: 3
 RSpec/StubbedMock:

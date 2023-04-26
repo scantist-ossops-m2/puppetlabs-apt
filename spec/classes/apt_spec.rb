@@ -234,7 +234,7 @@ describe 'apt' do
     end
   end
 
-  context 'with lots of non-defaults' do
+  context 'with lots of non-defaults - one' do
     let :params do
       {
         update: { 'frequency' => 'always', 'timeout' => 1, 'tries' => 3 },
@@ -274,7 +274,7 @@ describe 'apt' do
     }
   end
 
-  context 'with lots of non-defaults' do
+  context 'with lots of non-defaults - two' do
     let :params do
       {
         update: { 'frequency' => 'always', 'timeout' => 1, 'tries' => 3 },
