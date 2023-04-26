@@ -135,14 +135,14 @@ Puppet::Type.type(:apt_key).provide(:apt_key) do
         # Some webservers (e.g. Amazon S3) return code 400 if empty basic auth is sent
         if parsed_value.userinfo.nil?
           key = if parsed_value.scheme == 'https' && resource[:weak_ssl] == true
-                  open(parsed_value, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE).read
+                  URI.open(parsed_value, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE).read
                 else
                   parsed_value.read
                 end
         else
           user_pass = parsed_value.userinfo.split(':')
           parsed_value.userinfo = ''
-          key = open(parsed_value, http_basic_authentication: user_pass).read
+          key = URI.open(parsed_value, http_basic_authentication: user_pass).read
         end
       rescue *exceptions => e
         raise(_('%{_e} for %{_resource}') % { _e: e.message, _resource: resource[:source] })
