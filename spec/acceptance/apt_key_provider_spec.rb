@@ -677,7 +677,7 @@ describe 'apt_key' do
 
   describe 'content =>' do
     context 'with puppetlabs gpg key' do
-      it 'works' do
+      it 'applies without error' do
         # Apply the manifest (Retry if timeout error is received from key pool)
         retry_on_error_matching do
           apply_manifest(gpg_key_pp, catch_failures: true)
@@ -706,7 +706,7 @@ describe 'apt_key' do
 
   describe 'server =>' do
     context 'with hkp://pgp.mit.edu:80' do
-      it 'works' do
+      it 'applies without error' do
         retry_on_error_matching do
           apply_manifest(hkp_pool_pp, catch_failures: true)
         end
@@ -718,7 +718,7 @@ describe 'apt_key' do
 
     if hkps_protocol_supported
       context 'with hkps://keyserver.ubuntu.com' do
-        it 'works' do
+        it 'applies without error' do
           retry_on_error_matching do
             apply_manifest(hkps_ubuntu_pp, catch_failures: true)
           end
@@ -748,7 +748,7 @@ describe 'apt_key' do
 
   describe 'source =>' do
     context 'with http://' do
-      it 'works' do
+      it 'applies without error' do
         apply_manifest_twice(http_works_pp)
         run_shell(PUPPETLABS_KEY_CHECK_COMMAND)
       end
@@ -777,7 +777,7 @@ describe 'apt_key' do
         run_shell("apt-key del #{CENTOS_GPG_KEY_LONG_ID}", expect_failures: true)
       end
 
-      it 'works' do
+      it 'applies without error' do
         apply_manifest_twice(ftp_works_pp)
         run_shell(CENTOS_KEY_CHECK_COMMAND)
       end
@@ -796,7 +796,7 @@ describe 'apt_key' do
     end
 
     context 'with https://' do
-      it 'works' do
+      it 'applies without error' do
         apply_manifest_twice(https_works_pp)
         run_shell(PUPPETLABS_KEY_CHECK_COMMAND)
       end
@@ -834,7 +834,7 @@ describe 'apt_key' do
         run_shell('rm /tmp/puppetlabs-pubkey.gpg')
       end
 
-      it 'works' do
+      it 'applies without error' do
         apply_manifest_twice(path_exists_pp)
         run_shell(PUPPETLABS_KEY_CHECK_COMMAND)
       end
@@ -867,7 +867,7 @@ describe 'apt_key' do
 
   describe 'options =>' do
     context 'with debug' do
-      it 'works' do
+      it 'applies without error' do
         apply_manifest_twice(debug_works_pp)
         run_shell(PUPPETLABS_KEY_CHECK_COMMAND)
       end
@@ -876,13 +876,13 @@ describe 'apt_key' do
 
   describe 'fingerprint validation against source/content' do
     context 'with fingerprint in id matches fingerprint from remote key' do
-      it 'works' do
+      it 'applies without error' do
         apply_manifest_twice(fingerprint_match_pp)
       end
     end
 
     context 'with fingerprint in id does NOT match fingerprint from remote key' do
-      it 'works' do
+      it 'applies without error' do
         apply_manifest(fingerprint_does_not_match_pp, expect_failures: true) do |r|
           expect(r.stderr).to match(%r{don't match})
         end
