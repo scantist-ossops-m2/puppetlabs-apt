@@ -32,15 +32,6 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Max: 12
 
-# Offense count: 6
-# Configuration parameters: Prefixes, AllowedPatterns.
-# Prefixes: when, with, without
-RSpec/ContextWording:
-  Exclude:
-    - 'spec/classes/apt_spec.rb'
-    - 'spec/classes/apt_update_spec.rb'
-    - 'spec/unit/puppet/provider/apt_key_spec.rb'
-
 # Offense count: 32
 # Configuration parameters: IgnoredMetadata.
 RSpec/DescribeClass:

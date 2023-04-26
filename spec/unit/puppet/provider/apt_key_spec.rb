@@ -15,7 +15,7 @@ describe Puppet::Type.type(:apt_key).provider(:apt_key) do
     end
   end
 
-  context 'self.instances no key' do
+  context 'with self.instances no key' do
     before :each do
       # Unable to remove `master` from below terminology as it relies on outside code
       allow(described_class).to receive(:apt_key).with(
@@ -28,7 +28,7 @@ describe Puppet::Type.type(:apt_key).provider(:apt_key) do
     end
   end
 
-  context 'self.instances multiple keys' do
+  context 'with self.instances multiple keys' do
     before :each do
       command_output = <<~OUTPUT
         Executing: gpg --ignore-time-conflict --no-options --no-default-keyring --homedir /tmp/tmp.DU0GdRxjmE --no-auto-check-trustdb --trust-model always --keyring /etc/apt/trusted.gpg --primary-keyring /etc/apt/trusted.gpg --keyring /etc/apt/trusted.gpg.d/puppetlabs-pc1-keyring.gpg --no-tty --list-keys --with-colons --fingerprint --fixed-list-mode
@@ -54,7 +54,7 @@ describe Puppet::Type.type(:apt_key).provider(:apt_key) do
     end
   end
 
-  context 'create apt_key resource' do
+  context 'with create apt_key resource' do
     it 'apt_key with content set and source nil' do
       expect(described_class).to receive(:apt_key).with(['adv', '--no-tty',
                                                          '--keyserver',
@@ -172,7 +172,7 @@ describe Puppet::Type.type(:apt_key).provider(:apt_key) do
     end
   end
 
-  context 'key_line_hash function' do
+  context 'with key_line_hash function' do
     it 'matches rsa' do
       expect(described_class.key_line_hash('pub:-:1024:1:40976EAF437D05B5:1095016255:::-:::scESC:', 'fpr:::::::::630239CC130E1A7FD81A27B140976EAF437D05B5:')).to include(
         key_expiry: nil,

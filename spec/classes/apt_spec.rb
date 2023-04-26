@@ -389,7 +389,7 @@ describe 'apt' do
     }
 
     facts_hash.each do |os, facts|
-      context "on #{os}" do
+      context "when on #{os}" do
         let(:facts) do
           facts
         end

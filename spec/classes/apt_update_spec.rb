@@ -62,7 +62,7 @@ describe 'apt::update', type: :class do
       end
     end
 
-    context 'and Exec[apt_update] refreshonly is overridden to true and has recent run' do
+    context 'when Exec[apt_update] refreshonly is overridden to true and has recent run' do
       let(:facts) do
         {
           os: {
