@@ -3,16 +3,9 @@
 require 'spec_helper'
 
 describe 'apt::source' do
-  GPG_KEY_ID = '6F6B15509CF8E59E6E469F327F438280EF8D349F'
-
-  let :pre_condition do
-    'class { "apt": }'
-  end
-
-  let :title do
-    'my_source'
-  end
-
+  let(:id) { '6F6B15509CF8E59E6E469F327F438280EF8D349F' }
+  let(:title) { 'my_source' }
+  let(:pre_condition) { 'class { "apt": }' }
   let :facts do
     {
       os: {
@@ -79,7 +72,7 @@ describe 'apt::source' do
           location: 'http://debian.mirror.iweb.ca/debian/',
           release: 'sid',
           repos: 'testing',
-          key: GPG_KEY_ID,
+          key: id,
           pin: '10',
           architecture: 'x86_64',
           allow_unsigned: true
@@ -98,8 +91,8 @@ describe 'apt::source' do
       }
 
       it {
-        expect(subject).to contain_apt__key("Add key: #{GPG_KEY_ID} from Apt::Source my_source").that_comes_before('Apt::Setting[list-my_source]').with(ensure: 'present',
-                                                                                                                                                        id: GPG_KEY_ID)
+        expect(subject).to contain_apt__key("Add key: #{id} from Apt::Source my_source").that_comes_before('Apt::Setting[list-my_source]').with(ensure: 'present',
+                                                                                                                                                id: id)
       }
     end
 
@@ -112,7 +105,7 @@ describe 'apt::source' do
           repos: 'testing',
           key: {
             'ensure' => 'refreshed',
-            'id' => GPG_KEY_ID,
+            'id' => id,
             'server' => 'pgp.mit.edu',
             'content' => 'GPG key content',
             'source' => 'http://apt.puppetlabs.com/pubkey.gpg',
@@ -136,12 +129,12 @@ describe 'apt::source' do
       }
 
       it {
-        expect(subject).to contain_apt__key("Add key: #{GPG_KEY_ID} from Apt::Source my_source").that_comes_before('Apt::Setting[list-my_source]').with(ensure: 'refreshed',
-                                                                                                                                                        id: GPG_KEY_ID,
-                                                                                                                                                        server: 'pgp.mit.edu',
-                                                                                                                                                        content: 'GPG key content',
-                                                                                                                                                        source: 'http://apt.puppetlabs.com/pubkey.gpg',
-                                                                                                                                                        weak_ssl: true)
+        expect(subject).to contain_apt__key("Add key: #{id} from Apt::Source my_source").that_comes_before('Apt::Setting[list-my_source]').with(ensure: 'refreshed',
+                                                                                                                                                id: GPG_KEY_ID,
+                                                                                                                                                server: 'pgp.mit.edu',
+                                                                                                                                                content: 'GPG key content',
+                                                                                                                                                source: 'http://apt.puppetlabs.com/pubkey.gpg',
+                                                                                                                                                weak_ssl: true)
       }
     end
   end

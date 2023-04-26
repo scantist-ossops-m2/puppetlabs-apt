@@ -3,12 +3,8 @@
 require 'spec_helper'
 
 describe 'apt::source', type: :define do
-  GPG_KEY_ID = '6F6B15509CF8E59E6E469F327F438280EF8D349F'
-
-  let :title do
-    'my_source'
-  end
-
+  let(:id) { '6F6B15509CF8E59E6E469F327F438280EF8D349F' }
+  let(:title) { 'my_source' }
   let :facts do
     {
       os: {
@@ -47,7 +43,7 @@ describe 'apt::source', type: :define do
         'release' => 'sid',
         'repos' => 'testing',
         'include' => { 'src' => false },
-        'key' => GPG_KEY_ID,
+        'key' => id,
         'pin' => '10',
         'architecture' => 'x86_64',
         'allow_unsigned' => true
@@ -66,8 +62,8 @@ describe 'apt::source', type: :define do
     }
 
     it {
-      expect(subject).to contain_apt__key("Add key: #{GPG_KEY_ID} from Apt::Source my_source").that_comes_before('Apt::Setting[list-my_source]').with('ensure' => 'present',
-                                                                                                                                                      'id' => GPG_KEY_ID)
+      expect(subject).to contain_apt__key("Add key: #{id} from Apt::Source my_source").that_comes_before('Apt::Setting[list-my_source]').with('ensure' => 'present',
+                                                                                                                                              'id' => id)
     }
   end
 
