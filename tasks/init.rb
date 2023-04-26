@@ -21,7 +21,7 @@ def apt_get(action)
   { status: stdout.strip }
 end
 
-params = JSON.parse(STDIN.read)
+params = JSON.parse($stdin.read)
 action = params['action']
 
 begin

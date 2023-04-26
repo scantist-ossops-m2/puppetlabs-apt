@@ -92,8 +92,8 @@ Puppet::Type.type(:apt_key).provide(:apt_key) do
     fingerprint = fpr_split.last
     return_hash = {
       key_fingerprint: fingerprint,
-      key_long: fingerprint[-16..-1], # last 16 characters of fingerprint
-      key_short: fingerprint[-8..-1], # last 8 characters of fingerprint
+      key_long: fingerprint[-16..], # last 16 characters of fingerprint
+      key_short: fingerprint[-8..], # last 8 characters of fingerprint
       key_size: pub_split[2],
       key_type: nil,
       key_created: Time.at(pub_split[5].to_i),
