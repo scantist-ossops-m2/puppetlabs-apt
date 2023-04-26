@@ -32,12 +32,6 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Max: 12
 
-# Offense count: 1
-# Configuration parameters: MinSize.
-Performance/CollectionLiteralInLoop:
-  Exclude:
-    - 'spec/classes/apt_update_spec.rb'
-
 # Offense count: 6
 # Configuration parameters: Prefixes, AllowedPatterns.
 # Prefixes: when, with, without
