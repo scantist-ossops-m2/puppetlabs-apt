@@ -49,9 +49,7 @@ Puppet::Type.type(:apt_key).provide(:apt_key) do
 
       expired = false
 
-      if line_hash[:key_expiry]
-        expired = Time.now >= line_hash[:key_expiry]
-      end
+      expired = Time.now >= line_hash[:key_expiry] if line_hash[:key_expiry]
 
       new(
         name: line_hash[:key_fingerprint],
@@ -73,13 +71,14 @@ Puppet::Type.type(:apt_key).provide(:apt_key) do
   def self.prefetch(resources)
     apt_keys = instances
     resources.each_key do |name|
-      if name.length == 40
+      case name.length
+      when 40
         provider = apt_keys.find { |key| key.fingerprint == name }
         resources[name].provider = provider if provider
-      elsif name.length == 16
+      when 16
         provider = apt_keys.find { |key| key.long == name }
         resources[name].provider = provider if provider
-      elsif name.length == 8
+      when 8
         provider = apt_keys.find { |key| key.short == name }
         resources[name].provider = provider if provider
       end
@@ -93,12 +92,12 @@ Puppet::Type.type(:apt_key).provide(:apt_key) do
     fingerprint = fpr_split.last
     return_hash = {
       key_fingerprint: fingerprint,
-      key_long: fingerprint[-16..-1], # last 16 characters of fingerprint
-      key_short: fingerprint[-8..-1], # last 8 characters of fingerprint
+      key_long: fingerprint[-16..], # last 16 characters of fingerprint
+      key_short: fingerprint[-8..], # last 8 characters of fingerprint
       key_size: pub_split[2],
       key_type: nil,
       key_created: Time.at(pub_split[5].to_i),
-      key_expiry: pub_split[6].empty? ? nil : Time.at(pub_split[6].to_i),
+      key_expiry: pub_split[6].empty? ? nil : Time.at(pub_split[6].to_i)
     }
 
     # set key type based on types defined in /usr/share/doc/gnupg/DETAILS.gz
@@ -120,6 +119,7 @@ Puppet::Type.type(:apt_key).provide(:apt_key) do
     parsed_value = URI.parse(value)
     if parsed_value.scheme.nil?
       raise(_('The file %{_value} does not exist') % { _value: value }) unless File.exist?(value)
+
       # Because the tempfile method has to return a live object to prevent GC
       # of the underlying file from occuring too early, we also have to return
       # a file object here.  The caller can still call the #path method on the
@@ -136,14 +136,14 @@ Puppet::Type.type(:apt_key).provide(:apt_key) do
         # Some webservers (e.g. Amazon S3) return code 400 if empty basic auth is sent
         if parsed_value.userinfo.nil?
           key = if parsed_value.scheme == 'https' && resource[:weak_ssl] == true
-                  open(parsed_value, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE).read
+                  URI.open(parsed_value, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE).read
                 else
                   parsed_value.read
                 end
         else
           user_pass = parsed_value.userinfo.split(':')
           parsed_value.userinfo = ''
-          key = open(parsed_value, http_basic_authentication: user_pass).read
+          key = URI.open(parsed_value, http_basic_authentication: user_pass).read
         end
       rescue *exceptions => e
         raise(_('%{_e} for %{_resource}') % { _e: e.message, _resource: resource[:source] })
@@ -170,9 +170,7 @@ Puppet::Type.type(:apt_key).provide(:apt_key) do
 
         found_match = false
         extracted_key.each_line do |line|
-          if line.chomp == name
-            found_match = true
-          end
+          found_match = true if line.chomp == name
         end
         unless found_match
           raise(_('The id in your manifest %{_resource} and the fingerprint from content/source don\'t match. Check for an error in the id and content/source is legitimate.') % { _resource: resource[:name] }) # rubocop:disable Layout/LineLength
@@ -195,9 +193,7 @@ Puppet::Type.type(:apt_key).provide(:apt_key) do
       # Breaking up the command like this is needed because it blows up
       # if --recv-keys isn't the last argument.
       command.push('adv', '--no-tty', '--keyserver', resource[:server])
-      unless resource[:options].nil?
-        command.push('--keyserver-options', resource[:options])
-      end
+      command.push('--keyserver-options', resource[:options]) unless resource[:options].nil?
       command.push('--recv-keys', resource[:id])
     elsif resource[:content]
       key_file = tempfile(resource[:content])
