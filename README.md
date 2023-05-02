@@ -65,6 +65,25 @@ include apt
 <a id="add-gpg-keys"></a>
 
 ### Add GPG keys
+You can fetch GPG keys via HTTP, Puppet URI, or local filesystem. The key can be in GPG binary format, or ASCII armored, but the filename should have the appropriate extension (`.gpg` or `.asc`)
+
+#### Fetch via HTTP
+```puppet
+apt::keyring {'puppetlabs-keyring.gpg':
+  source => 'https://apt.puppetlabs.com/keyring.gpg',
+}
+```
+
+#### Fetch via Puppet URI
+```puppet
+apt::keyring {'puppetlabs-keyring.gpg':
+  source => 'puppet:///modules/my_module/local_puppetlabs-keyring.gpg',
+}
+```
+
+Alternatively `apt::key` can be used.
+
+**Warning** `apt::key` is deprecated in the latest Debian and Ubuntu releases. Please use apt::keyring instead.
 
 **Warning:** Using short key IDs presents a serious security issue, potentially leaving you open to collision attacks. We recommend you always use full fingerprints to identify your GPG keys. This module allows short keys, but issues a security warning if you use them.
 
@@ -180,6 +199,22 @@ apt::source { 'puppetlabs':
   key      => {
     'id'     => '6F6B15509CF8E59E6E469F327F438280EF8D349F',
     'server' => 'pgp.mit.edu',
+  },
+}
+```
+
+### Adding name and source to the key parameter of apt::source, which then manages modern apt gpg keyrings
+
+The name parameter of key hash should contain name with extensions (such as puppetlabs.gpg), Absence of extension will result in creation of file with just name and no extension.
+
+```puppet
+apt::source { 'puppetlabs':
+  comment  => 'Puppet8',
+  location => 'https://apt.puppetlabs.com/',
+  repos    => 'puppet8',
+  key      => {
+    'name'   => 'puppetlabs.gpg',
+    'source' => 'https://apt.puppetlabs.com/keyring.gpg',
   },
 }
 ```
