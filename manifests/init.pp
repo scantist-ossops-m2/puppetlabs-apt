@@ -200,7 +200,7 @@ class apt (
     assert_type(Integer, $update['tries'])
   }
 
-  $_update = merge($apt::update_defaults, $update)
+  $_update = $apt::update_defaults + $update
   include apt::update
 
   if $purge['sources.list'] {
@@ -222,11 +222,11 @@ class apt (
     assert_type(Boolean, $purge['apt.conf.d'])
   }
 
-  $_purge = merge($apt::purge_defaults, $purge)
+  $_purge = $apt::purge_defaults + $purge
 
   if $proxy['perhost'] {
     $_perhost = $proxy['perhost'].map |$item| {
-      $_item = merge($apt::proxy_defaults, $item)
+      $_item = $apt::proxy_defaults + $item
       $_scheme = $_item['https'] ? {
         true    => 'https',
         default => 'http',
@@ -239,17 +239,13 @@ class apt (
         true    => 'DIRECT',
         default => "${_scheme}://${_item['host']}${_port}/",
       }
-      merge($item, {
-          'scheme' => $_scheme,
-          'target' => $_target,
-        }
-      )
+      $item + { 'scheme' => $_scheme, 'target' => $_target, }
     }
   } else {
     $_perhost = {}
   }
 
-  $_proxy = merge($apt::proxy_defaults, $proxy, { 'perhost' => $_perhost })
+  $_proxy = $apt::proxy_defaults + $proxy + { 'perhost' => $_perhost }
 
   $confheadertmp = epp('apt/_conf_header.epp')
   $proxytmp = epp('apt/proxy.epp', { 'proxies' => $_proxy })

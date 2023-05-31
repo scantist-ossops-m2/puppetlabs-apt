@@ -114,7 +114,7 @@ define apt::source (
     $_location = undef
   }
 
-  $includes = merge($apt::include_defaults, $include)
+  $includes = $apt::include_defaults + $include
 
   if $key and $keyring {
     fail('parameters key and keyring are mutualy exclusive')
@@ -125,7 +125,7 @@ define apt::source (
       unless $key['id'] {
         fail('key hash must contain at least an id entry')
       }
-      $_key = merge($apt::source_key_defaults, $key)
+      $_key = $apt::source_key_defaults + $key
     } else {
       $_key = { 'id' => assert_type(String[1], $key) }
     }
@@ -164,7 +164,7 @@ define apt::source (
 
   if $pin {
     if $pin =~ Hash {
-      $_pin = merge($pin, { 'ensure' => $ensure, 'before' => $_before })
+      $_pin = $pin + { 'ensure' => $ensure, 'before' => $_before }
     } elsif ($pin =~ Numeric or $pin =~ String) {
       $url_split = split($location, '[:\/]+')
       $host      = $url_split[1]
