@@ -62,9 +62,7 @@ class apt::backports (
   if $repos {
     $_repos = $repos
   }
-  if $key {
-    $_key = $key
-  }
+
   if (!($facts['os']['name'] == 'Debian' or $facts['os']['name'] == 'Ubuntu')) {
     unless $location and $release and $repos and $key {
       fail('If not on Debian or Ubuntu, you must explicitly pass location, release, repos, and key')
@@ -82,9 +80,6 @@ class apt::backports (
   }
   unless $repos {
     $_repos = $apt::backports['repos']
-  }
-  unless $key {
-    $_key =  $apt::backports['key']
   }
 
   if $pin =~ Hash {
@@ -105,7 +100,7 @@ class apt::backports (
     release  => $_release,
     repos    => $_repos,
     include  => $include,
-    key      => $_key,
+    key      => $key,
     pin      => $_pin,
   }
 }
