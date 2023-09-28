@@ -94,6 +94,12 @@ define apt::source (
     $_release = $release
   }
 
+  if $release =~ Pattern[/\/$/] {
+    $_components = $_release
+  } else {
+    $_components = "${_release} ${repos}"
+  }
+
   if $ensure == 'present' {
     if ! $location {
       fail('cannot create a source entry without specifying a location')
@@ -151,8 +157,7 @@ define apt::source (
         },
       ),
       'location'         => $_location,
-      'release'          => $_release,
-      'repos'            => $repos,
+      'components'       => $_components,
     }
   )
 

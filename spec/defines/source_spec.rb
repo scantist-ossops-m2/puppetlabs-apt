@@ -427,6 +427,24 @@ describe 'apt::source' do
       it { is_expected.to contain_apt__setting('list-my_source').with_content(%r{hello\.there  main}) }
     end
 
+    context 'with release is /' do
+      let(:params) { { location: 'hello.there', release: '/' } }
+
+      it { is_expected.to contain_apt__setting('list-my_source').with_content(%r{hello\.there /}) }
+    end
+
+    context 'with release is test/' do
+      let(:params) { { location: 'hello.there', release: 'test/' } }
+
+      it { is_expected.to contain_apt__setting('list-my_source').with_content(%r{hello\.there test/}) }
+    end
+
+    context 'with release is test/test' do
+      let(:params) { { location: 'hello.there', release: 'test/test' } }
+
+      it { is_expected.to contain_apt__setting('list-my_source').with_content(%r{hello\.there test/test main}) }
+    end
+
     context 'with invalid pin' do
       let :params do
         {
