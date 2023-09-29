@@ -41,7 +41,7 @@ define apt::keyring (
   Stdlib::Absolutepath $keyring_file = "${keyring_dir}/${keyring_filename}",
   Stdlib::Filemode $keyring_file_mode = '0644',
   Optional[Stdlib::Filesource] $source = undef,
-  Optional[String] $content = undef,
+  Optional[String[1]] $content = undef,
   Enum['present','absent'] $ensure = 'present',
 ) {
   ensure_resource('file', $keyring_dir, { ensure => 'directory', mode => '0755', })
