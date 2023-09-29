@@ -55,7 +55,7 @@
 #
 # @param keyring
 #   Absolute path to a file containing the PGP keyring used to sign this repository. Value is used to set signed-by on the source entry.
-#   This is not necessary if the key is installed with key param above.
+#   This is not necessary if the key is installed with `key` param above.
 #   See https://wiki.debian.org/DebianRepository/UseThirdParty for details.
 #
 # @param pin
