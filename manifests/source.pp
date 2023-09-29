@@ -64,7 +64,7 @@
 #
 # @param architecture
 #   Tells Apt to only download information for specified architectures. Valid options: a string containing one or more architecture names,
-#   separated by commas (e.g., 'i386' or 'i386,alpha,powerpc'). Default: undef
+#   separated by commas (e.g., 'i386' or 'i386,alpha,powerpc').
 #   (if unspecified, Apt downloads information for all architectures defined in the Apt::Architectures option)
 #
 # @param allow_unsigned
