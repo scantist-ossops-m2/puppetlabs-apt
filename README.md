@@ -76,7 +76,7 @@ apt::keyring {'puppetlabs-keyring.gpg':
 
 #### Fetch via Puppet URI
 ```puppet
-apt::keyring {'puppetlabs-keyring.gpg':
+apt::keyring { 'puppetlabs-keyring.gpg':
   source => 'puppet:///modules/my_module/local_puppetlabs-keyring.gpg',
 }
 ```
