@@ -69,7 +69,7 @@ You can fetch GPG keys via HTTP, Puppet URI, or local filesystem. The key can be
 
 #### Fetch via HTTP
 ```puppet
-apt::keyring {'puppetlabs-keyring.gpg':
+apt::keyring { 'puppetlabs-keyring.gpg':
   source => 'https://apt.puppetlabs.com/keyring.gpg',
 }
 ```
