@@ -49,7 +49,7 @@
 #   Creates an apt::keyring in /etc/apt/keyrings (or anywhere on disk given `filename`) Valid options:
 #     * a hash of `parameter => value` pairs to be passed to `file`: `name` (title), `content`, `source`, `filename`
 #
-#   The following inputs are valid for the (deprecated) apt::key defined type. Valid options:
+#   The following inputs are valid for the (deprecated) `apt::key` defined type. Valid options:
 #     * a string to be passed to the `id` parameter of the `apt::key` defined type
 #     * a hash of `parameter => value` pairs to be passed to `apt::key`: `id`, `server`, `content`, `source`, `weak_ssl`, `options`
 #
