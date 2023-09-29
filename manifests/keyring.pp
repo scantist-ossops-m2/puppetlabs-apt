@@ -56,6 +56,8 @@ define apt::keyring (
       file { $keyring_file:
         ensure  => 'file',
         mode    => $keyring_file_mode,
+        owner   => 'root',
+        group   => 'root',
         source  => $source,
         content => $content,
       }
