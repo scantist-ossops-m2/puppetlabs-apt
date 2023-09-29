@@ -69,6 +69,7 @@ include apt
 You can fetch GPG keys via HTTP, Puppet URI, or local filesystem. The key can be in GPG binary format, or ASCII armored, but the filename should have the appropriate extension (`.gpg` or `.asc`).
 
 #### Fetch via HTTP
+
 ```puppet
 apt::keyring { 'puppetlabs-keyring.gpg':
   source => 'https://apt.puppetlabs.com/keyring.gpg',
