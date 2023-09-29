@@ -39,7 +39,7 @@ define apt::keyring (
   Stdlib::Absolutepath $keyring_dir = '/etc/apt/keyrings',
   String[1] $keyring_filename = $name,
   Stdlib::Absolutepath $keyring_file = "${keyring_dir}/${keyring_filename}",
-  String  $keyring_file_mode = '0644',
+  Stdlib::Filemode $keyring_file_mode = '0644',
   Optional[Stdlib::Filesource] $source = undef,
   Optional[String] $content = undef,
   Enum['present','absent'] $ensure = 'present',
