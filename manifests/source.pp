@@ -46,7 +46,7 @@
 #   Specifies whether to request the distribution's uncompiled source code. Default false.
 #
 # @param key
-#   Creates an apt::keyring in /etc/apt/keyrings (or anywhere on disk given `filename`) Valid options:
+#   Creates an `apt::keyring` in `/etc/apt/keyrings` (or anywhere on disk given `filename`) Valid options:
 #     * a hash of `parameter => value` pairs to be passed to `file`: `name` (title), `content`, `source`, `filename`
 #
 #   The following inputs are valid for the (deprecated) `apt::key` defined type. Valid options:
