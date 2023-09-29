@@ -89,7 +89,7 @@
 #   Creates new `apt::key` resources. Valid options: a hash to be passed to the create_resources function linked above.
 #
 # @param keyrings
-#   Creates new `apt::keyring` resources. Valid options: a hash to be passed to the create_resources function linked above.
+#   Hash of `apt::keyring` resources.
 #
 # @param ppas
 #   Creates new `apt::ppa` resources. Valid options: a hash to be passed to the create_resources function linked above.
