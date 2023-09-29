@@ -10,16 +10,16 @@
 #     },
 #   }
 #
-#@example Download key behaviour to handle modern apt gpg keyrings. The name parameter in the key hash should be given with
-# extension. Absence of extension will result in file formation with just name and no extension.
-# apt::source { 'puppetlabs':
-#   location => 'http://apt.puppetlabs.com',
-#   comment  => 'Puppet8',
-#   key      => {
-#     'name'   => 'puppetlabs.gpg',
-#     'source' => 'https://apt.puppetlabs.com/keyring.gpg',
-#   },
-# }
+# @example Download key behaviour to handle modern apt gpg keyrings. The `name` parameter in the key hash should be given with
+#   extension. Absence of extension will result in file formation with just name and no extension.
+#   apt::source { 'puppetlabs':
+#     location => 'http://apt.puppetlabs.com',
+#     comment  => 'Puppet8',
+#     key      => {
+#       'name'   => 'puppetlabs.gpg',
+#       'source' => 'https://apt.puppetlabs.com/keyring.gpg',
+#     },
+#   }
 #
 # @param location
 #   Required, unless ensure is set to 'absent'. Specifies an Apt repository. Valid options: a string containing a repository URL.
