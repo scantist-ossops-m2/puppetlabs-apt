@@ -164,7 +164,7 @@ define apt::source (
     }
 
     # Old keyserver keys handled by apt-key
-    if ($_key =~ Hash and $_key['id']) {
+    if $_key =~ Hash and $_key['id'] {
       # We do not want to remove keys when the source is absent.
       if ($ensure == 'present') {
         apt::key { "Add key: ${$_key['id']} from Apt::Source ${title}":
