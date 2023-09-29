@@ -1,7 +1,7 @@
 # @summary Manage GPG keyrings for apt repositories
 #
 # @example Download the puppetlabs apt keyring
-#   apt::keyring {'puppetlabs-keyring.gpg':
+#   apt::keyring { 'puppetlabs-keyring.gpg':
 #     source => 'https://apt.puppetlabs.com/keyring.gpg',
 #   }
 # @example Deploy the apt source and associated keyring file
