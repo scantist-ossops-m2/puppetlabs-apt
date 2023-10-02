@@ -66,7 +66,7 @@ include apt
 
 ### Add GPG keys
 
-You can fetch GPG keys via HTTP, Puppet URI, or local filesystem. The key can be in GPG binary format, or ASCII armored, but the filename should have the appropriate extension (`.gpg` or `.asc`).
+You can fetch GPG keys via HTTP, Puppet URI, or local filesystem. The key can be in GPG binary format, or ASCII armored, but the filename should have the appropriate extension (`.gpg` for keys in binary format; or `.asc` for ASCII armored keys).
 
 #### Fetch via HTTP
 
