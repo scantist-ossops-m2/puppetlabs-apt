@@ -12,7 +12,7 @@ describe 'apt::keyring' do
 
     it 'applies idempotently' do
       retry_on_error_matching do
-        idempotent_apply(pp)
+        idempotent_apply(keyring_pp)
       end
     end
   end
