@@ -4,11 +4,13 @@ require 'spec_helper_acceptance'
 
 describe 'apt::keyring' do
   context 'when using default values and source specified explicitly' do
-    keyring_pp = <<-MANIFEST
-    apt::keyring { 'puppetlabs-keyring.gpg':
-  		source => 'https://apt.puppetlabs.com/keyring.gpg',
-    }
-    MANIFEST
+    let (:keyring_pp) do
+			<<-MANIFEST
+    		apt::keyring { 'puppetlabs-keyring.gpg':
+  				source => 'https://apt.puppetlabs.com/keyring.gpg',
+    		}
+    	MANIFEST
+		end
 
     it 'applies idempotently' do
       retry_on_error_matching do
