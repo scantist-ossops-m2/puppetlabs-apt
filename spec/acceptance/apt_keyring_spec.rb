@@ -2,17 +2,13 @@
 
 require 'spec_helper_acceptance'
 
-PUPPETLABS_FILE_CHECK_COMMAND = 'ls /etc/apt/keyrings | grep \'puppetlabs-keyring.gpg\''
-
 describe 'apt::keyring' do
   context 'when using default values and source specified explicitly' do
-    let(:keyring_pp) do
-      <<-MANIFEST
-    		apt::keyring { 'puppetlabs-keyring.gpg':
-  				source => 'https://apt.puppetlabs.com/keyring.gpg',
-    		}
-      MANIFEST
-    end
+    keyring_pp = <<-MANIFEST
+    	apt::keyring { 'puppetlabs-keyring.gpg':
+  			source => 'https://apt.puppetlabs.com/keyring.gpg',
+    	}
+    MANIFEST
 
     it 'applies idempotently' do
       retry_on_error_matching do
@@ -21,7 +17,7 @@ describe 'apt::keyring' do
     end
 
     it 'expects file to be present at default location' do
-      run_shell(PUPPETLABS_FILE_CHECK_COMMAND.to_s)
+      run_shell('rm /etc/apt/keyrings/puppetlabs-keyring.gpg')
     end
   end
 end
