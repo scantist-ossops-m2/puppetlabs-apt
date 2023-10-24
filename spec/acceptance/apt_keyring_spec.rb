@@ -7,7 +7,7 @@ describe 'apt::keyring' do
     keyring_pp = <<-MANIFEST
      apt::keyring { 'puppetlabs-keyring.gpg':
   	  source => 'https://apt.puppetlabs.com/keyring.gpg',
-    }
+     }
     MANIFEST
 
     it 'applies idempotently' do
