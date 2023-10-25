@@ -20,7 +20,9 @@ describe 'apt::keyring' do
     end
 
     it 'expects file content to be present and correct' do
-      run_shell(PUPPETLABS_KEYRING_CHECK_COMMAND.to_s)
+      retry_on_error_matching do
+        run_shell(PUPPETLABS_KEYRING_CHECK_COMMAND.to_s)
+      end
     end
   end
 end
