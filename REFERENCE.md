@@ -20,6 +20,7 @@
 
 * [`apt::conf`](#apt--conf): Specifies a custom Apt configuration file.
 * [`apt::key`](#apt--key): Manages the GPG keys that Apt uses to authenticate packages.
+* [`apt::keyring`](#apt--keyring): Manage GPG keyrings for apt repositories
 * [`apt::mark`](#apt--mark): Manages apt-mark settings
 * [`apt::pin`](#apt--pin): Manages Apt pins. Does not trigger an apt-get update run.
 * [`apt::ppa`](#apt--ppa): Manages PPA repositories using `add-apt-repository`. Not supported on Debian.
@@ -73,6 +74,7 @@ The following parameters are available in the `apt` class:
 * [`proxy_defaults`](#-apt--proxy_defaults)
 * [`sources`](#-apt--sources)
 * [`keys`](#-apt--keys)
+* [`keyrings`](#-apt--keyrings)
 * [`ppas`](#-apt--ppas)
 * [`pins`](#-apt--pins)
 * [`settings`](#-apt--settings)
@@ -238,6 +240,14 @@ Data type: `Hash`
 Creates new `apt::key` resources. Valid options: a hash to be passed to the create_resources function linked above.
 
 Default value: `$apt::params::keys`
+
+##### <a name="-apt--keyrings"></a>`keyrings`
+
+Data type: `Hash`
+
+Hash of `apt::keyring` resources.
+
+Default value: `{}`
 
 ##### <a name="-apt--ppas"></a>`ppas`
 
@@ -624,6 +634,101 @@ Passes additional options to `apt-key adv --keyserver-options`.
 
 Default value: `$apt::key_options`
 
+### <a name="apt--keyring"></a>`apt::keyring`
+
+Manage GPG keyrings for apt repositories
+
+#### Examples
+
+##### Download the puppetlabs apt keyring
+
+```puppet
+apt::keyring { 'puppetlabs-keyring.gpg':
+  source => 'https://apt.puppetlabs.com/keyring.gpg',
+}
+```
+
+##### Deploy the apt source and associated keyring file
+
+```puppet
+apt::source { 'puppet8-release':
+  location => 'http://apt.puppetlabs.com',
+  repos    => 'puppet8',
+  key      => {
+    name   => 'puppetlabs-keyring.gpg',
+    source => 'https://apt.puppetlabs.com/keyring.gpg'
+  }
+}
+```
+
+#### Parameters
+
+The following parameters are available in the `apt::keyring` defined type:
+
+* [`keyring_dir`](#-apt--keyring--keyring_dir)
+* [`keyring_filename`](#-apt--keyring--keyring_filename)
+* [`keyring_file`](#-apt--keyring--keyring_file)
+* [`keyring_file_mode`](#-apt--keyring--keyring_file_mode)
+* [`source`](#-apt--keyring--source)
+* [`content`](#-apt--keyring--content)
+* [`ensure`](#-apt--keyring--ensure)
+
+##### <a name="-apt--keyring--keyring_dir"></a>`keyring_dir`
+
+Data type: `Stdlib::Absolutepath`
+
+Path to the directory where the keyring will be stored.
+
+Default value: `'/etc/apt/keyrings'`
+
+##### <a name="-apt--keyring--keyring_filename"></a>`keyring_filename`
+
+Data type: `String[1]`
+
+Optional filename for the keyring. It should also contain extension along with the filename.
+
+Default value: `$name`
+
+##### <a name="-apt--keyring--keyring_file"></a>`keyring_file`
+
+Data type: `Stdlib::Absolutepath`
+
+File path of the keyring.
+
+Default value: `"${keyring_dir}/${keyring_filename}"`
+
+##### <a name="-apt--keyring--keyring_file_mode"></a>`keyring_file_mode`
+
+Data type: `Stdlib::Filemode`
+
+File permissions of the keyring.
+
+Default value: `'0644'`
+
+##### <a name="-apt--keyring--source"></a>`source`
+
+Data type: `Optional[Stdlib::Filesource]`
+
+Source of the keyring file. Mutually exclusive with 'content'.
+
+Default value: `undef`
+
+##### <a name="-apt--keyring--content"></a>`content`
+
+Data type: `Optional[String[1]]`
+
+Content of the keyring file. Mutually exclusive with 'source'.
+
+Default value: `undef`
+
+##### <a name="-apt--keyring--ensure"></a>`ensure`
+
+Data type: `Enum['present','absent']`
+
+Ensure presence or absence of the resource.
+
+Default value: `'present'`
+
 ### <a name="apt--mark"></a>`apt::mark`
 
 Manages apt-mark settings
@@ -925,6 +1030,20 @@ apt::source { 'puppetlabs':
 }
 ```
 
+##### Download key behaviour to handle modern apt gpg keyrings. The `name` parameter in the key hash should be given with
+
+```puppet
+extension. Absence of extension will result in file formation with just name and no extension.
+apt::source { 'puppetlabs':
+  location => 'http://apt.puppetlabs.com',
+  comment  => 'Puppet8',
+  key      => {
+    'name'   => 'puppetlabs.gpg',
+    'source' => 'https://apt.puppetlabs.com/keyring.gpg',
+  },
+}
+```
+
 #### Parameters
 
 The following parameters are available in the `apt::source` defined type:
@@ -1001,9 +1120,12 @@ Default value: `{}`
 
 Data type: `Optional[Variant[String, Hash]]`
 
-Creates a declaration of the apt::key defined type. Valid options: a string to be passed to the `id` parameter of the `apt::key`
-defined type, or a hash of `parameter => value` pairs to be passed to `apt::key`'s `id`, `server`, `content`, `source`, `weak_ssl`,
-and/or `options` parameters.
+Creates an `apt::keyring` in `/etc/apt/keyrings` (or anywhere on disk given `filename`) Valid options:
+  * a hash of `parameter => value` pairs to be passed to `file`: `name` (title), `content`, `source`, `filename`
+
+The following inputs are valid for the (deprecated) `apt::key` defined type. Valid options:
+  * a string to be passed to the `id` parameter of the `apt::key` defined type
+  * a hash of `parameter => value` pairs to be passed to `apt::key`: `id`, `server`, `content`, `source`, `weak_ssl`, `options`
 
 Default value: `undef`
 
@@ -1012,6 +1134,7 @@ Default value: `undef`
 Data type: `Optional[Stdlib::AbsolutePath]`
 
 Absolute path to a file containing the PGP keyring used to sign this repository. Value is used to set signed-by on the source entry.
+This is not necessary if the key is installed with `key` param above.
 See https://wiki.debian.org/DebianRepository/UseThirdParty for details.
 
 Default value: `undef`
@@ -1030,8 +1153,8 @@ Default value: `undef`
 Data type: `Optional[String]`
 
 Tells Apt to only download information for specified architectures. Valid options: a string containing one or more architecture names,
-separated by commas (e.g., 'i386' or 'i386,alpha,powerpc'). Default: undef (if unspecified, Apt downloads information for all architectures
-defined in the Apt::Architectures option).
+separated by commas (e.g., 'i386' or 'i386,alpha,powerpc').
+(if unspecified, Apt downloads information for all architectures defined in the Apt::Architectures option)
 
 Default value: `undef`
 
