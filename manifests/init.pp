@@ -391,9 +391,7 @@ class apt (
 
   case $facts['os']['name'] {
     'Debian': {
-      if versioncmp($facts['os']['release']['major'], '9') >= 0 {
-        stdlib::ensure_packages(['gnupg'])
-      }
+      stdlib::ensure_packages(['gnupg'])
     }
     'Ubuntu': {
       if versioncmp($facts['os']['release']['full'], '17.04') >= 0 {
