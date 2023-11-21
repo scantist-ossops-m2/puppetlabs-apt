@@ -470,12 +470,7 @@ Default value: `undef`
 Data type: `Optional[Variant[String, Hash]]`
 
 Specifies a key to authenticate the backports. Valid options: a string to be passed to the id parameter of the apt::key defined type, or a
-hash of parameter => value pairs to be passed to apt::key's id, server, content, source, and/or options parameters. Default value
-for Debian and Ubuntu varies:
-
-- Debian: 'A1BD8E9D78F7FE5C3E65D8AF8B48AD6246925553'
-
-- Ubuntu: '630239CC130E1A7FD81A27B140976EAF437D05B5'
+hash of parameter => value pairs to be passed to apt::key's id, server, content, source, and/or options parameters.
 
 Default value: `undef`
 
