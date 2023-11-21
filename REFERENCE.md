@@ -662,7 +662,6 @@ The following parameters are available in the `apt::keyring` defined type:
 
 * [`dir`](#-apt--keyring--dir)
 * [`filename`](#-apt--keyring--filename)
-* [`file`](#-apt--keyring--file)
 * [`mode`](#-apt--keyring--mode)
 * [`source`](#-apt--keyring--source)
 * [`content`](#-apt--keyring--content)
@@ -683,14 +682,6 @@ Data type: `String[1]`
 Optional filename for the keyring. It should also contain extension along with the filename.
 
 Default value: `$name`
-
-##### <a name="-apt--keyring--file"></a>`file`
-
-Data type: `Stdlib::Absolutepath`
-
-File path of the keyring.
-
-Default value: `"${dir}/${filename}"`
 
 ##### <a name="-apt--keyring--mode"></a>`mode`
 

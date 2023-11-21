@@ -20,9 +20,6 @@
 # @param filename
 #   Optional filename for the keyring. It should also contain extension along with the filename.
 #
-# @param file
-#   File path of the keyring.
-#
 # @param mode
 #   File permissions of the keyring.
 #
@@ -38,7 +35,6 @@
 define apt::keyring (
   Stdlib::Absolutepath $dir = '/etc/apt/keyrings',
   String[1] $filename = $name,
-  Stdlib::Absolutepath $file = "${dir}/${filename}",
   Stdlib::Filemode $mode = '0644',
   Optional[Stdlib::Filesource] $source = undef,
   Optional[String[1]] $content = undef,
@@ -50,6 +46,8 @@ define apt::keyring (
   } elsif ! $source and ! $content {
     fail("One of 'source' or 'content' parameters are required")
   }
+
+  $file = "${dir}/${filename}"
 
   case $ensure {
     'present': {
