@@ -183,11 +183,11 @@ define apt::source (
     # Modern apt keyrings
     elsif $_key =~ Hash and $_key['name'] {
       apt::keyring { $_key['name']:
-        ensure           => $_key_ensure,
-        content          => $_key['content'],
-        source           => $_key['source'],
-        keyring_filename => $_key['filename'],
-        before           => $_before,
+        ensure   => $_key_ensure,
+        content  => $_key['content'],
+        source   => $_key['source'],
+        filename => $_key['filename'],
+        before   => $_before,
       }
       # TODO replace this block with a reference to the apt::keyring's final filename/full_path
       if $_key['filename'] {
