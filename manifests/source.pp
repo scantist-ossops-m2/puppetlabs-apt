@@ -186,14 +186,20 @@ define apt::source (
         ensure   => $_key_ensure,
         content  => $_key['content'],
         source   => $_key['source'],
+        dir      => $_key['dir'],
         filename => $_key['filename'],
+        mode     => $_key['mode'],
         before   => $_before,
       }
-      # TODO replace this block with a reference to the apt::keyring's final filename/full_path
-      if $_key['filename'] {
-        $_list_keyring = $_key['filename']
+
+      $_list_keyring = if $_key['dir'] and $_key['filename'] {
+        "${_key['dir']}${_key['filename']}"
+      } elsif $_key['filename'] {
+        "/etc/apt/keyrings/${_key['filename']}"
+      } elsif $_key['dir'] {
+        "${_key['dir']}${_key['name']}"
       } else {
-        $_list_keyring = "/etc/apt/keyrings/${_key['name']}"
+        "/etc/apt/keyrings/${_key['name']}"
       }
     }
   } else {
