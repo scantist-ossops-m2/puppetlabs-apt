@@ -660,15 +660,14 @@ apt::source { 'puppet8-release':
 
 The following parameters are available in the `apt::keyring` defined type:
 
-* [`keyring_dir`](#-apt--keyring--keyring_dir)
-* [`keyring_filename`](#-apt--keyring--keyring_filename)
-* [`keyring_file`](#-apt--keyring--keyring_file)
-* [`keyring_file_mode`](#-apt--keyring--keyring_file_mode)
+* [`dir`](#-apt--keyring--dir)
+* [`filename`](#-apt--keyring--filename)
+* [`mode`](#-apt--keyring--mode)
 * [`source`](#-apt--keyring--source)
 * [`content`](#-apt--keyring--content)
 * [`ensure`](#-apt--keyring--ensure)
 
-##### <a name="-apt--keyring--keyring_dir"></a>`keyring_dir`
+##### <a name="-apt--keyring--dir"></a>`dir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -676,7 +675,7 @@ Path to the directory where the keyring will be stored.
 
 Default value: `'/etc/apt/keyrings'`
 
-##### <a name="-apt--keyring--keyring_filename"></a>`keyring_filename`
+##### <a name="-apt--keyring--filename"></a>`filename`
 
 Data type: `String[1]`
 
@@ -684,15 +683,7 @@ Optional filename for the keyring. It should also contain extension along with t
 
 Default value: `$name`
 
-##### <a name="-apt--keyring--keyring_file"></a>`keyring_file`
-
-Data type: `Stdlib::Absolutepath`
-
-File path of the keyring.
-
-Default value: `"${keyring_dir}/${keyring_filename}"`
-
-##### <a name="-apt--keyring--keyring_file_mode"></a>`keyring_file_mode`
+##### <a name="-apt--keyring--mode"></a>`mode`
 
 Data type: `Stdlib::Filemode`
 

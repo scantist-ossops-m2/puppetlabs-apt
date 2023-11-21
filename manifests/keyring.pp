@@ -14,16 +14,13 @@
 #     }
 #   }
 #
-# @param keyring_dir
+# @param dir
 #   Path to the directory where the keyring will be stored.
 #
-# @param keyring_filename
+# @param filename
 #   Optional filename for the keyring. It should also contain extension along with the filename.
 #
-# @param keyring_file
-#   File path of the keyring.
-#
-# @param keyring_file_mode
+# @param mode
 #   File permissions of the keyring.
 #
 # @param source
@@ -36,26 +33,27 @@
 #   Ensure presence or absence of the resource.
 #
 define apt::keyring (
-  Stdlib::Absolutepath $keyring_dir = '/etc/apt/keyrings',
-  String[1] $keyring_filename = $name,
-  Stdlib::Absolutepath $keyring_file = "${keyring_dir}/${keyring_filename}",
-  Stdlib::Filemode $keyring_file_mode = '0644',
+  Stdlib::Absolutepath $dir = '/etc/apt/keyrings',
+  String[1] $filename = $name,
+  Stdlib::Filemode $mode = '0644',
   Optional[Stdlib::Filesource] $source = undef,
   Optional[String[1]] $content = undef,
   Enum['present','absent'] $ensure = 'present',
 ) {
-  ensure_resource('file', $keyring_dir, { ensure => 'directory', mode => '0755', })
+  ensure_resource('file', $dir, { ensure => 'directory', mode => '0755', })
   if $source and $content {
     fail("Parameters 'source' and 'content' are mutually exclusive")
   } elsif ! $source and ! $content {
     fail("One of 'source' or 'content' parameters are required")
   }
 
+  $file = "${dir}/${filename}"
+
   case $ensure {
     'present': {
-      file { $keyring_file:
+      file { $file:
         ensure  => 'file',
-        mode    => $keyring_file_mode,
+        mode    => $mode,
         owner   => 'root',
         group   => 'root',
         source  => $source,
@@ -63,7 +61,7 @@ define apt::keyring (
       }
     }
     'absent': {
-      file { $keyring_file:
+      file { $file:
         ensure => $ensure,
       }
     }
