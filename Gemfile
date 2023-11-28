@@ -23,7 +23,6 @@ group :development do
   gem "voxpupuli-puppet-lint-plugins", '~> 5.0', require: false
   gem "facterdb", '~> 1.18',                     require: false
   gem "metadata-json-lint", '~> 3.0',            require: false
-  gem "puppetlabs_spec_helper", '~> 7.0',        require: false
   gem "rspec-puppet-facts", '~> 2.0',            require: false
   gem "codecov", '~> 0.2',                       require: false
   gem "dependency_checker", '~> 1.0.0',          require: false
@@ -34,7 +33,6 @@ group :development do
   gem "rubocop", '= 1.48.1',                     require: false
   gem "rubocop-performance", '= 1.16.0',         require: false
   gem "rubocop-rspec", '= 2.19.0',               require: false
-  gem "puppet-strings", '~> 4.0',                require: false
   gem "rb-readline", '= 0.5.5',                  require: false, platforms: [:mswin, :mingw, :x64_mingw]
 end
 group :system_tests do
