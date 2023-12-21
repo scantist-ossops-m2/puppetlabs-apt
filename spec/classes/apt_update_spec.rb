@@ -152,7 +152,7 @@ describe 'apt::update', type: :class do
     end
   end
 
-  ['daily', 'weekly'].each do |update_frequency|
+  ['hourly', 'daily', 'weekly', 60].each do |update_frequency|
     context "when apt::update['frequency'] has the value of #{update_frequency}" do
       pair = { 'we are due for a run' => 1_406_660_561, 'the update-success-stamp file does not exist' => -1 }
       pair.each_pair do |desc, factval|

@@ -168,9 +168,11 @@ Options:
 `apt-get update` runs regardless of this value.
 Valid options:
   'always' (at every Puppet run);
-   daily' (if the value of `apt_update_last_success` is less than current epoch time minus 86400);
+  'hourly' (if the value of `apt_update_last_success` is less than current epoch time minus 3600);
+  'daily'  (if the value of `apt_update_last_success` is less than current epoch time minus 86400);
   'weekly' (if the value of `apt_update_last_success` is less than current epoch time minus 604800);
   'reluctantly' (only if the exec resource `apt_update` is notified).
+  Integer  (if the value of `apt_update_last_success` is less than current epoch time minus provided Integer value);
 Default: 'reluctantly'.
 * **:loglevel** `Integer`: Specifies the log level of logs outputted to the console. Default: undef.
 * **:timeout** `Integer`: Specifies how long to wait for the update to complete before canceling it. Valid options: an integer, in seconds. Default: undef.
