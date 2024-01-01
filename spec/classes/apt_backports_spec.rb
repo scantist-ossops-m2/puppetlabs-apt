@@ -34,6 +34,7 @@ describe 'apt::backports', type: :class do
             'priority' => 200,
             'release' => 'bullseye-backports'
           },
+          keyring: '/usr/share/keyrings/debian-archive-keyring.gpg',
         )
       }
     end
@@ -65,6 +66,7 @@ describe 'apt::backports', type: :class do
             'priority' => 200,
             'release' => 'jammy-backports'
           },
+          keyring: '/usr/share/keyrings/ubuntu-archive-keyring.gpg',
         )
       }
     end
@@ -144,7 +146,7 @@ describe 'apt::backports', type: :class do
     end
   end
 
-  describe 'mint tests' do
+  describe 'linuxmint tests' do
     let(:facts) do
       {
         os: {
@@ -193,7 +195,7 @@ describe 'apt::backports', type: :class do
       end
 
       it do
-        expect(subject).to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, repos, and key})
+        expect(subject).to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, and repos})
       end
     end
 
@@ -207,7 +209,7 @@ describe 'apt::backports', type: :class do
       end
 
       it do
-        expect(subject).to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, repos, and key})
+        expect(subject).to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, and repos})
       end
     end
 
@@ -221,21 +223,7 @@ describe 'apt::backports', type: :class do
       end
 
       it do
-        expect(subject).to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, repos, and key})
-      end
-    end
-
-    context 'with missing key' do
-      let(:params) do
-        {
-          location: 'http://archive.ubuntu.com/ubuntu',
-          release: 'trusty-backports',
-          repos: 'main universe multiverse restricted'
-        }
-      end
-
-      it do
-        expect(subject).to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, repos, and key})
+        expect(subject).to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, and repos})
       end
     end
   end
