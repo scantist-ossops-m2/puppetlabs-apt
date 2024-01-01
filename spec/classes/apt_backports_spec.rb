@@ -26,10 +26,15 @@ describe 'apt::backports', type: :class do
       end
 
       it {
-        expect(subject).to contain_apt__source('backports').with(location: 'http://deb.debian.org/debian',
-                                                                 repos: 'main contrib non-free',
-                                                                 release: 'bullseye-backports',
-                                                                 pin: { 'priority' => 200, 'release' => 'bullseye-backports' })
+        expect(subject).to contain_apt__source('backports').with(
+          location: 'http://deb.debian.org/debian',
+          repos: 'main contrib non-free',
+          release: 'bullseye-backports',
+          pin: {
+            'priority' => 200,
+            'release' => 'bullseye-backports'
+          },
+        )
       }
     end
 
@@ -52,10 +57,15 @@ describe 'apt::backports', type: :class do
       end
 
       it {
-        expect(subject).to contain_apt__source('backports').with(location: 'http://archive.ubuntu.com/ubuntu',
-                                                                 repos: 'main universe multiverse restricted',
-                                                                 release: 'jammy-backports',
-                                                                 pin: { 'priority' => 200, 'release' => 'jammy-backports' })
+        expect(subject).to contain_apt__source('backports').with(
+          location: 'http://archive.ubuntu.com/ubuntu',
+          repos: 'main universe multiverse restricted',
+          release: 'jammy-backports',
+          pin: {
+            'priority' => 200,
+            'release' => 'jammy-backports'
+          },
+        )
       }
     end
 
@@ -87,11 +97,13 @@ describe 'apt::backports', type: :class do
       end
 
       it {
-        expect(subject).to contain_apt__source('backports').with(location: 'http://archive.ubuntu.com/ubuntu-test',
-                                                                 key: 'A1BD8E9D78F7FE5C3E65D8AF8B48AD6246925553',
-                                                                 repos: 'main',
-                                                                 release: 'vivid',
-                                                                 pin: { 'priority' => 90, 'release' => 'vivid' })
+        expect(subject).to contain_apt__source('backports').with(
+          location: 'http://archive.ubuntu.com/ubuntu-test',
+          key: 'A1BD8E9D78F7FE5C3E65D8AF8B48AD6246925553',
+          repos: 'main',
+          release: 'vivid',
+          pin: { 'priority' => 90, 'release' => 'vivid' },
+        )
       }
     end
 
@@ -124,8 +136,10 @@ describe 'apt::backports', type: :class do
       end
 
       it {
-        expect(subject).to contain_apt__source('backports').with(key: { 'id' => 'A1BD8E9D78F7FE5C3E65D8AF8B48AD6246925553' },
-                                                                 pin: { 'priority' => '90' })
+        expect(subject).to contain_apt__source('backports').with(
+          key: { 'id' => 'A1BD8E9D78F7FE5C3E65D8AF8B48AD6246925553' },
+          pin: { 'priority' => '90' },
+        )
       }
     end
   end
@@ -159,11 +173,13 @@ describe 'apt::backports', type: :class do
       end
 
       it {
-        expect(subject).to contain_apt__source('backports').with(location: 'http://archive.ubuntu.com/ubuntu',
-                                                                 key: '630239CC130E1A7FD81A27B140976EAF437D05B5',
-                                                                 repos: 'main universe multiverse restricted',
-                                                                 release: 'trusty-backports',
-                                                                 pin: { 'priority' => 200, 'release' => 'trusty-backports' })
+        expect(subject).to contain_apt__source('backports').with(
+          location: 'http://archive.ubuntu.com/ubuntu',
+          key: '630239CC130E1A7FD81A27B140976EAF437D05B5',
+          repos: 'main universe multiverse restricted',
+          release: 'trusty-backports',
+          pin: { 'priority' => 200, 'release' => 'trusty-backports' },
+        )
       }
     end
 
