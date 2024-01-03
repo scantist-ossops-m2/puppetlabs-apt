@@ -174,7 +174,7 @@ describe 'apt::update', type: :class do
               apt_update_last_success: factval
             }
           end
-          let(:pre_condition) { "class{ '::apt': update => {'frequency' => '#{update_frequency}',} }" }
+          let(:pre_condition) { "class{ '::apt': update => {'frequency' => #{update_frequency.inspect},} }" }
 
           it 'triggers an apt-get update run' do
             # set the apt_update exec\'s refreshonly attribute to false
@@ -200,7 +200,7 @@ describe 'apt::update', type: :class do
             apt_update_last_success: Time.now.to_i
           }
         end
-        let(:pre_condition) { "class{ '::apt': update => {'frequency' => '#{update_frequency}',} }" }
+        let(:pre_condition) { "class{ '::apt': update => {'frequency' => #{update_frequency.inspect},} }" }
 
         it 'does not trigger an apt-get update run' do
           # don't change the apt_update exec\'s refreshonly attribute. (it should be true)
@@ -226,7 +226,7 @@ describe 'apt::update', type: :class do
             apt_update_last_success: nil
           }
         end
-        let(:pre_condition) { "class{ '::apt': update => {'frequency' => '#{update_frequency}',} }" }
+        let(:pre_condition) { "class{ '::apt': update => {'frequency' => #{update_frequency.inspect},} }" }
 
         it 'triggers an apt-get update run' do
           # set the apt_update exec\'s refreshonly attribute to false
