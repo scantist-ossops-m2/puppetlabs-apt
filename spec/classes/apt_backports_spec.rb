@@ -3,21 +3,22 @@
 require 'spec_helper'
 
 describe 'apt::backports', type: :class do
-  let(:pre_condition) { "class{ '::apt': }" }
+  let(:pre_condition) { 'include apt' }
 
   describe 'debian/ubuntu tests' do
-    context 'with defaults on deb' do
+    context 'with defaults on debian' do
       let(:facts) do
         {
           os: {
             family: 'Debian',
             name: 'Debian',
             release: {
-              major: '9',
-              full: '9.0'
+              full: '11.8',
+              major: '11',
+              minor: '8'
             },
             distro: {
-              codename: 'stretch',
+              codename: 'bullseye',
               id: 'Debian'
             }
           }
@@ -25,10 +26,16 @@ describe 'apt::backports', type: :class do
       end
 
       it {
-        expect(subject).to contain_apt__source('backports').with(location: 'http://deb.debian.org/debian',
-                                                                 repos: 'main contrib non-free',
-                                                                 release: 'stretch-backports',
-                                                                 pin: { 'priority' => 200, 'release' => 'stretch-backports' })
+        expect(subject).to contain_apt__source('backports').with(
+          location: 'http://deb.debian.org/debian',
+          repos: 'main contrib non-free',
+          release: 'bullseye-backports',
+          pin: {
+            'priority' => 200,
+            'release' => 'bullseye-backports'
+          },
+          keyring: '/usr/share/keyrings/debian-archive-keyring.gpg',
+        )
       }
     end
 
@@ -39,11 +46,11 @@ describe 'apt::backports', type: :class do
             family: 'Debian',
             name: 'Ubuntu',
             release: {
-              major: '18',
-              full: '18.04'
+              major: '22.04',
+              full: '22.04'
             },
             distro: {
-              codename: 'bionic',
+              codename: 'jammy',
               id: 'Ubuntu'
             }
           }
@@ -51,10 +58,16 @@ describe 'apt::backports', type: :class do
       end
 
       it {
-        expect(subject).to contain_apt__source('backports').with(location: 'http://archive.ubuntu.com/ubuntu',
-                                                                 repos: 'main universe multiverse restricted',
-                                                                 release: 'bionic-backports',
-                                                                 pin: { 'priority' => 200, 'release' => 'bionic-backports' })
+        expect(subject).to contain_apt__source('backports').with(
+          location: 'http://archive.ubuntu.com/ubuntu',
+          repos: 'main universe multiverse restricted',
+          release: 'jammy-backports',
+          pin: {
+            'priority' => 200,
+            'release' => 'jammy-backports'
+          },
+          keyring: '/usr/share/keyrings/ubuntu-archive-keyring.gpg',
+        )
       }
     end
 
@@ -65,11 +78,11 @@ describe 'apt::backports', type: :class do
             family: 'Debian',
             name: 'Ubuntu',
             release: {
-              major: '18',
-              full: '18.04'
+              major: '22.04',
+              full: '22.04'
             },
             distro: {
-              codename: 'bionic',
+              codename: 'jammy',
               id: 'Ubuntu'
             }
           }
@@ -86,11 +99,13 @@ describe 'apt::backports', type: :class do
       end
 
       it {
-        expect(subject).to contain_apt__source('backports').with(location: 'http://archive.ubuntu.com/ubuntu-test',
-                                                                 key: 'A1BD8E9D78F7FE5C3E65D8AF8B48AD6246925553',
-                                                                 repos: 'main',
-                                                                 release: 'vivid',
-                                                                 pin: { 'priority' => 90, 'release' => 'vivid' })
+        expect(subject).to contain_apt__source('backports').with(
+          location: 'http://archive.ubuntu.com/ubuntu-test',
+          key: 'A1BD8E9D78F7FE5C3E65D8AF8B48AD6246925553',
+          repos: 'main',
+          release: 'vivid',
+          pin: { 'priority' => 90, 'release' => 'vivid' },
+        )
       }
     end
 
@@ -101,11 +116,11 @@ describe 'apt::backports', type: :class do
             family: 'Debian',
             name: 'Ubuntu',
             release: {
-              major: '18',
-              full: '18.04'
+              major: '22.04',
+              full: '22.04'
             },
             distro: {
-              codename: 'bionic',
+              codename: 'jammy',
               id: 'Ubuntu'
             }
           }
@@ -123,13 +138,15 @@ describe 'apt::backports', type: :class do
       end
 
       it {
-        expect(subject).to contain_apt__source('backports').with(key: { 'id' => 'A1BD8E9D78F7FE5C3E65D8AF8B48AD6246925553' },
-                                                                 pin: { 'priority' => '90' })
+        expect(subject).to contain_apt__source('backports').with(
+          key: { 'id' => 'A1BD8E9D78F7FE5C3E65D8AF8B48AD6246925553' },
+          pin: { 'priority' => '90' },
+        )
       }
     end
   end
 
-  describe 'mint tests' do
+  describe 'linuxmint tests' do
     let(:facts) do
       {
         os: {
@@ -158,11 +175,13 @@ describe 'apt::backports', type: :class do
       end
 
       it {
-        expect(subject).to contain_apt__source('backports').with(location: 'http://archive.ubuntu.com/ubuntu',
-                                                                 key: '630239CC130E1A7FD81A27B140976EAF437D05B5',
-                                                                 repos: 'main universe multiverse restricted',
-                                                                 release: 'trusty-backports',
-                                                                 pin: { 'priority' => 200, 'release' => 'trusty-backports' })
+        expect(subject).to contain_apt__source('backports').with(
+          location: 'http://archive.ubuntu.com/ubuntu',
+          key: '630239CC130E1A7FD81A27B140976EAF437D05B5',
+          repos: 'main universe multiverse restricted',
+          release: 'trusty-backports',
+          pin: { 'priority' => 200, 'release' => 'trusty-backports' },
+        )
       }
     end
 
@@ -176,7 +195,7 @@ describe 'apt::backports', type: :class do
       end
 
       it do
-        expect(subject).to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, repos, and key})
+        expect(subject).to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, and repos})
       end
     end
 
@@ -190,7 +209,7 @@ describe 'apt::backports', type: :class do
       end
 
       it do
-        expect(subject).to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, repos, and key})
+        expect(subject).to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, and repos})
       end
     end
 
@@ -204,21 +223,7 @@ describe 'apt::backports', type: :class do
       end
 
       it do
-        expect(subject).to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, repos, and key})
-      end
-    end
-
-    context 'with missing key' do
-      let(:params) do
-        {
-          location: 'http://archive.ubuntu.com/ubuntu',
-          release: 'trusty-backports',
-          repos: 'main universe multiverse restricted'
-        }
-      end
-
-      it do
-        expect(subject).to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, repos, and key})
+        expect(subject).to raise_error(Puppet::Error, %r{If not on Debian or Ubuntu, you must explicitly pass location, release, and repos})
       end
     end
   end
@@ -230,11 +235,11 @@ describe 'apt::backports', type: :class do
           family: 'Debian',
           name: 'Ubuntu',
           release: {
-            major: '18',
-            full: '18.04'
+            major: '22.04',
+            full: '22.04'
           },
           distro: {
-            codename: 'bionic',
+            codename: 'jammy',
             id: 'Ubuntu'
           }
         }
