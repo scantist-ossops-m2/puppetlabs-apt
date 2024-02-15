@@ -5,9 +5,9 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
-## [v9.3.0](https://github.com/puppetlabs/puppetlabs-apt/tree/v9.3.0) - 2024-02-15
+## [v9.4.0](https://github.com/puppetlabs/puppetlabs-apt/tree/v9.4.0) - 2024-02-15
 
-[Full Changelog](https://github.com/puppetlabs/puppetlabs-apt/compare/v9.2.0...v9.3.0)
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-apt/compare/v9.2.0...v9.4.0)
 
 ### Added
 
