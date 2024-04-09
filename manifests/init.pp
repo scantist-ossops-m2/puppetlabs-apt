@@ -374,7 +374,11 @@ class apt (
       default => 'present',
     }
 
-    $auth_conf_tmp = stdlib::deferrable_epp('apt/auth_conf.epp', { 'auth_conf_entries' => $auth_conf_entries })
+    $auth_conf_tmp = stdlib::deferrable_epp('apt/auth_conf.epp',
+      {
+        'auth_conf_entries' => $auth_conf_entries,
+      },
+    )
 
     file { '/etc/apt/auth.conf':
       ensure  => $auth_conf_ensure,

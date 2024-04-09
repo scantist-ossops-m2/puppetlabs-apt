@@ -209,10 +209,12 @@ define apt::source (
     $_architecture = undef
   }
 
-  $sourcelist = epp('apt/source.list.epp', {
+  $sourcelist = epp('apt/source.list.epp',
+    {
       'comment'          => $comment,
       'includes'         => $includes,
-      'options'          => delete_undef_values({
+      'options'          => delete_undef_values(
+        {
           'arch'              => $_architecture,
           'trusted'           => $allow_unsigned ? { true => 'yes', false => undef },
           'allow-insecure'    => $allow_insecure ? { true => 'yes', false => undef },
@@ -222,7 +224,7 @@ define apt::source (
       ),
       'location'         => $_location,
       'components'       => $_components,
-    }
+    },
   )
 
   apt::setting { "list-${name}":
