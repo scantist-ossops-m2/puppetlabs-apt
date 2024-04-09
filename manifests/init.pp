@@ -40,7 +40,7 @@
 #   Specifies how often to run `apt-get update`. If the exec resource `apt_update` is notified,
 #   `apt-get update` runs regardless of this value.
 #   Valid options:
-#     'always' (at every Puppet run); 
+#     'always' (at every Puppet run);
 #     'hourly' (if the value of `apt_update_last_success` is less than current epoch time minus 3600);
 #     'daily'  (if the value of `apt_update_last_success` is less than current epoch time minus 86400);
 #     'weekly' (if the value of `apt_update_last_success` is less than current epoch time minus 604800);
