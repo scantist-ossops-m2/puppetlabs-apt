@@ -30,8 +30,10 @@ define apt::setting (
     fail('apt::setting cannot have both content and source')
   }
 
-  if !$content and !$source {
-    fail('apt::setting needs either of content or source')
+  if $ensure != 'absent' {
+    if !$content and !$source {
+      fail('apt::setting needs either of content or source')
+    }
   }
 
   $title_array = split($title, '-')
